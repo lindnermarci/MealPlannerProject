@@ -5,7 +5,6 @@ namespace MealPlanner.Models
     public class Meal
     {
         public int MealId { get; set; }
-        public string MealPlanId { get; set; }
         public string Name { get; set; }
         public List<Ingredient> Ingredients{ get; set; }
         public string ShortDescription { get; set; }

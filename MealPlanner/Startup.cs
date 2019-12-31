@@ -25,7 +25,8 @@ namespace MealPlanner
         {
             services.AddDbContext<AppDbContext>(cfg =>
             {
-                cfg.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                cfg.UseSqlServer(configuration.GetConnectionString("DefaultConnection")
+                    );
             });
             services.AddScoped<IMealRepository, MealRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();

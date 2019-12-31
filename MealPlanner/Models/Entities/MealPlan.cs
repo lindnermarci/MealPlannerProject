@@ -16,9 +16,7 @@ namespace MealPlanner.Models
         private readonly ILogger logger;
 
         public string MealPlanId { get; set; }
-        public DayOfWeek DayOfWeek { get; set; }
         public List<MealPlanItem> MealPlanItems { get; set; }
-
         private MealPlan(AppDbContext appDbContext)
         {
             this.appDbContext = appDbContext;
@@ -45,9 +43,12 @@ namespace MealPlanner.Models
 
         public void AddToPlan(Meal meal, int day, int amount)
         {
+           
+            MealPlanItem item = appDbContext.MealPlanItems.FirstOrDefault();
+            
             var mealPlanItem =
                     appDbContext.MealPlanItems.SingleOrDefault(
-                        s => s.Meal.MealId == meal.MealId && s.MealPlanId == MealPlanId);
+                        item => item.Meal.MealId == meal.MealId && item.MealPlanId == MealPlanId);
 
             if (mealPlanItem == null)
             {
@@ -60,6 +61,7 @@ namespace MealPlanner.Models
                 };
 
                 appDbContext.MealPlanItems.Add(mealPlanItem);
+
             }
             else
             {
@@ -69,15 +71,26 @@ namespace MealPlanner.Models
             appDbContext.SaveChanges();
         }
 
+        internal void RemoveAllFromPlan()
+        {
+            
+            var mealPlanItems = appDbContext.MealPlanItems;
+            foreach (var item in mealPlanItems)
+            {
+                mealPlanItems.Remove(item);
+            }
+            MealPlanItems?.Clear();
+        }
+
         public int RemoveFromPlan(Meal Meal)
         {
             var mealPlanItem =
                     appDbContext.MealPlanItems.SingleOrDefault(
-                        s => s.Meal.MealId == Meal.MealId && s.MealPlanId == MealPlanId);
+                        item => item.Meal.MealId == Meal.MealId && item.MealPlanId == MealPlanId);
 
             var localAmount = 0;
 
-            if (Meal != null)
+            if (mealPlanItem != null)
             {
                     appDbContext.MealPlanItems.Remove(mealPlanItem);
             }
@@ -89,9 +102,8 @@ namespace MealPlanner.Models
 
         public List<MealPlanItem> GetMealPlanItems()
         {
-            return MealPlanItems ??
-                   (MealPlanItems =
-                       appDbContext.MealPlanItems.Where(c => c.MealPlanId != MealPlanId)
+            return MealPlanItems ?? (MealPlanItems =
+                       appDbContext.MealPlanItems.Where(c => c.MealPlanId == MealPlanId)
                            .Include(s => s.Meal)
                            .ToList());
         }
@@ -100,7 +112,7 @@ namespace MealPlanner.Models
         {
             var mealPlanItems = appDbContext
                 .MealPlanItems
-                .Where(cart => cart.MealPlanId == MealPlanId);
+                .Where(x => x.MealPlanId == MealPlanId);
 
             appDbContext.MealPlanItems.RemoveRange(mealPlanItems);
 
@@ -111,7 +123,7 @@ namespace MealPlanner.Models
         {
             decimal[] calories = new decimal[7];
 
-            var total = appDbContext.MealPlanItems.Where(x => x.Meal != null);
+            var total = appDbContext.MealPlanItems.Where(x => x.MealPlanId == MealPlanId);
 
             foreach (var item in total)
             {

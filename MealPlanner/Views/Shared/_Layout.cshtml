@@ -32,7 +32,7 @@
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-controller="Meal" asp-action="List" asp-route-category="">All Meals</a></li>
                         @await Component.InvokeAsync("CategoryMenu")
-
+                        <li><a asp-controller="MealPlan" asp-action="Index" asp-route-category="">MealPlan</a></li>
                         <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
                     </ul>
                 </div>

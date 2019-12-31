@@ -30,7 +30,7 @@ namespace MealPlanner.Controllers
             var mealPlanViewModel = new MealPlanViewModel()
             {
                 MealPlan = mealPlan,
-                TotalCalories = mealPlan.GetMealPlanTotalCalories()
+                //TotalCalories = mealPlan.GetMealPlanTotalCalories()
             };
             mealPlanViewModel.MealPlan.MealPlanItems.OrderBy(x => x.DayOfWeek);
         return View(mealPlanViewModel);
@@ -38,7 +38,7 @@ namespace MealPlanner.Controllers
 
         public RedirectToActionResult AddToMealPlan(int day, int mealId)
         {
-            var selectedMeal = mealRepository.AllMeals.FirstOrDefault(p => p.MealId == mealId);
+            Meal selectedMeal = mealRepository.AllMeals.FirstOrDefault(p => p.MealId == mealId);
 
             if (selectedMeal != null)
             {
@@ -55,6 +55,13 @@ namespace MealPlanner.Controllers
             {
                 mealPlan.RemoveFromPlan(selectedPie);
             }
+            return RedirectToAction("Index");
+        }
+
+        public RedirectToActionResult ClearMealPlan()
+        {
+
+            mealPlan.ClearMealPlan();
             return RedirectToAction("Index");
         }
 

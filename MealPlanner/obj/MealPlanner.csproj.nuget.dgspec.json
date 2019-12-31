@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\documents\\2019-20-01\\projektmunka\\MealPlanner\\MealPlanner.csproj": {}
+    "F:\\documents\\2019-20-01\\projektmunka\\MealPlanner3\\MealPlannerProject\\MealPlanner\\MealPlanner.csproj": {}
   },
   "projects": {
-    "E:\\documents\\2019-20-01\\projektmunka\\MealPlanner\\MealPlanner.csproj": {
+    "F:\\documents\\2019-20-01\\projektmunka\\MealPlanner3\\MealPlannerProject\\MealPlanner\\MealPlanner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\documents\\2019-20-01\\projektmunka\\MealPlanner\\MealPlanner.csproj",
+        "projectUniqueName": "F:\\documents\\2019-20-01\\projektmunka\\MealPlanner3\\MealPlannerProject\\MealPlanner\\MealPlanner.csproj",
         "projectName": "MealPlanner",
-        "projectPath": "E:\\documents\\2019-20-01\\projektmunka\\MealPlanner\\MealPlanner.csproj",
+        "projectPath": "F:\\documents\\2019-20-01\\projektmunka\\MealPlanner3\\MealPlannerProject\\MealPlanner\\MealPlanner.csproj",
         "packagesPath": "C:\\Users\\Marci\\.nuget\\packages\\",
-        "outputPath": "E:\\documents\\2019-20-01\\projektmunka\\MealPlanner\\obj\\",
+        "outputPath": "F:\\documents\\2019-20-01\\projektmunka\\MealPlanner3\\MealPlannerProject\\MealPlanner\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
