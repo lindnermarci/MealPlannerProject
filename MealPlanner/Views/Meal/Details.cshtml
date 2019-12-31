@@ -1,0 +1,33 @@
+﻿@model Meal
+
+<h2>@Model.Name</h2>
+
+<div class="thumbnail">
+    <img alt="@Model.Name" src="@Model.ImageUrl" />
+    <div class="caption-full">
+        <h3 class="pull-right">@Model.Category</h3>
+        <h3>
+            <a href="#">@Model.Name</a>
+        </h3>
+        <h4>@Model.ShortDescription</h4>
+        <h3>@Model.LongDescription</h3>
+        <div class="addToPlan">
+            <div class="addToPlan">
+                <form method="get" action="/MealPlan/AddToMealPlan">
+                    <select id="Day" name="day">
+                        <option value="1">Monday</option>
+                        <option value="2">Tuesday</option>
+                        <option value="3">Wednesday</option>
+                        <option value="4">Thursday</option>
+                        <option value="5">Friday</option>
+                        <option value="6">Saturday</option>
+                        <option value="0">Sunday</option>
+                    </select>
+                    <input type="hidden" name="mealId" value="@Model.MealId">
+                    <br /><button class="btn btn-success" type="submit">Add to meal plan</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

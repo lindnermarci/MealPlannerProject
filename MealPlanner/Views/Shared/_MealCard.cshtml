@@ -1,0 +1,30 @@
+﻿@model Meal
+
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="thumbnail">
+        <img src="@Model.ImageThumbnailUrl" alt="">
+        <div class="caption">
+            <h3>
+                <a asp-controller="Meal" asp-action="Details" asp-route-id="@Model.MealId">@Model.Name</a>
+            </h3>
+            <p>@Model.ShortDescription</p>
+            <p>@Model.Calories.ToString()kcal</p>
+        </div>
+        <div class="addToPlan">
+            <form method="get" action="/MealPlan/AddToMealPlan">
+                <select id="Day" name="day">
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
+                    <option value="0">Sunday</option>
+                </select>
+                <input type="hidden" name="mealId" value="@Model.MealId">
+                <br /><button class="btn btn-success" type="submit">Add to meal plan</button>
+            </form>
+
+        </div>
+    </div>
+</div>

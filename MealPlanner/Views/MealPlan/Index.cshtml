@@ -1,0 +1,42 @@
+﻿@model MealPlanViewModel
+
+<h2>Your mealPlan</h2>
+
+@for (int i = 0; i < 7; i++)
+{
+    <h3 colspan="3" class="text-center">@((DayOfWeek)i)</h3>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Selected amount</th>
+                <th>Meal</th>
+                <th class="text-right">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.MealPlan.MealPlanItems.Where(x => x.DayOfWeek == (DayOfWeek)i))
+            {
+
+                <tr>
+                    <td class="text-center">@line.Amount</td>
+                    <td class="text-left">@line.Meal.Name</td>
+                    <td class="text-right">
+                        @((line.Amount * line.Meal.Calories).ToString())
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total:</td>
+                <td class="text-right">
+                    @Model.TotalCalories.ElementAt(i).ToString()
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+
