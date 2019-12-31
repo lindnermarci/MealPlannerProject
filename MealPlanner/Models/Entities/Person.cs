@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MealPlanner.Models.Entities;
 
 namespace MealPlanner.Models
 {
@@ -19,6 +20,7 @@ namespace MealPlanner.Models
         public int CardioWeekly { get; set; }
         public int BodyFatPercentage { get; set; }
         public int PredictedYearlyMuscleGain { get; set; }
+        public MealPlanDetails MealPlanDetails { get; set; }
 
     }
 }

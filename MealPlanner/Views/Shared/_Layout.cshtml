@@ -3,17 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MealPlanner</title>
+    <title>@ViewBag.Title</title>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-dark bg-dark navbar-expand-md">
-
-        </nav>
-    </header>
 
     <div class="container">
 
@@ -33,7 +28,8 @@
                         <li><a asp-controller="Meal" asp-action="List" asp-route-category="">All Meals</a></li>
                         @await Component.InvokeAsync("CategoryMenu")
                         <li><a asp-controller="MealPlan" asp-action="Index" asp-route-category="">MealPlan</a></li>
-                        <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+                        <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        <li><partial name="_LoginPartial" /></li>
                     </ul>
                 </div>
             </div>
@@ -42,8 +38,9 @@
         <div class="row">
             <div class="col-md-3">
                 <p class="lead">
-                    <img class="img-responsive" alt="Marton's Meal Planner'" src="~/Images/bethanylogo.png" />
+                    <img class="img-responsive" alt="Marton's Meal Planner'" src="~/Images/logo.png" />
                 </p>
+                <h1 class="text-center">@ViewBag.Title</h1>
             </div>
             <div class="col-md-9">
                 @RenderBody()

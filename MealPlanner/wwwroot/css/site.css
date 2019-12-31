@@ -55,10 +55,6 @@ footer {
     background-image: none;
 }
 
-.navbar-inverse {
-    background-color: #a593c2;
-    border-color: #a593c2;
-}
 
 .nav.navbar-nav.navbar-right li a {
     color: white;
@@ -80,11 +76,6 @@ footer {
     top: 0;
     left: 0;
     min-height: 400px;
-}
-
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
-    background-color: #fcaeae !important;
-    border-color: #fba1a1 !important;
 }
 
 

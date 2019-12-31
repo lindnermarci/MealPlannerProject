@@ -24,8 +24,13 @@ namespace MealPlanner.Controllers
             {
                 MealsOfTheWeek = mealRepository.MealsOfTheWeek
             };
-
+            ViewBag.title = "Marton's Meal Planner";
             return View(homeViewModel);
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
         }
     }
 }

@@ -4,6 +4,7 @@ using MealPlanner.Models.Repositories;
 using MealPlanner.Modles.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,9 @@ namespace MealPlanner
                 cfg.UseSqlServer(configuration.GetConnectionString("DefaultConnection")
                     );
             });
+
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
+            
             services.AddScoped<IMealRepository, MealRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IPersonRepository, PersonRepository>();
@@ -37,6 +41,7 @@ namespace MealPlanner
             services.AddSession();
 
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +62,8 @@ namespace MealPlanner
 
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
 
 
             app.UseEndpoints(endpoints =>
@@ -65,6 +71,7 @@ namespace MealPlanner
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
 
         }
