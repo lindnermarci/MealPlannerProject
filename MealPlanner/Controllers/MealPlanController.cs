@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MealPlanner.Models;
 using MealPlanner.Models.Repositories;
+using MealPlanner.Modles.Repositories;
 using MealPlanner.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,13 +17,14 @@ namespace MealPlanner.Controllers
     {
         private readonly IMealRepository mealRepository;
         private readonly MealPlan mealPlan;
+        private readonly IPersonRepository personRepository;
 
-        public MealPlanController(IMealRepository mealRepository, MealPlan mealPlan)
+        public MealPlanController(IMealRepository mealRepository, MealPlan mealPlan, IPersonRepository personRepository)
         {
             this.mealRepository = mealRepository;
             this.mealPlan = mealPlan;
+            this.personRepository = personRepository;
         }
-
         public ViewResult Index()
         {
             var items = mealPlan.GetMealPlanItems();
@@ -32,7 +34,9 @@ namespace MealPlanner.Controllers
             var mealPlanViewModel = new MealPlanViewModel()
             {
                 MealPlan = mealPlan,
-                TotalCalories = mealPlan.GetMealPlanTotalCalories()
+                TotalCalories = mealPlan.GetMealPlanTotalCalories(),
+                DailyCalorieGoal = personRepository.calculateTDEE()
+
             };
             mealPlanViewModel.MealPlan.MealPlanItems.OrderBy(x => x.DayOfWeek);
         return View(mealPlanViewModel);

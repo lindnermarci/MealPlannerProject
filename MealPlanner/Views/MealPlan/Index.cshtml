@@ -1,7 +1,7 @@
 ﻿@model MealPlanViewModel
 
 <h2>Your mealPlan</h2>
-
+<h3>Your daily calorie need(TDEE): @Model.DailyCalorieGoal kcal(<a asp-controller="Person" asp-action="PersonInformation">Personalise mealplan</a>)</h3>
 @for (int i = 0; i < 7; i++)
 {
     <h3 colspan="3" class="text-center">@((DayOfWeek)i)</h3>

@@ -1,0 +1,138 @@
+﻿@model PersonViewModel
+@{
+    ViewBag.Title = "Provide Information";
+}
+@section Scripts{
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meal Planner: @ViewBag.Title </title>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card card-body bg-light">
+                <form asp-action="PersonSave" asp-controller="Person" method="post" id="theForm">
+                    <div asp-validation-summary="ModelOnly"></div>
+
+                    <div class="form-group">
+                        <label asp-for="FirstName">Your First Name:</label>
+                        <input type="text" asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Last Name:</label>
+                        <input type="text" asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Age:</label>
+                        <input type="text" asp-for="Age" class="form-control" />
+                        <span asp-validation-for="Age" class="text-danger"></span>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Your Weight:</label>
+                        <input type="text" asp-for="Weight" class="form-control" />
+                        <span asp-validation-for="Weight" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Gender:</label>
+                        <select name="Gender" asp-for="Gender">
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Height(cm):</label>
+                        <input type="text" asp-for="Height" class="form-control" />
+                        <span asp-validation-for="Height" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your numMealsADay:</label>
+                        <select name="NumOfMealsPerDay" asp-for="NumOfMealsPerDay">
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                        <span asp-validation-for="NumOfMealsPerDay" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your daily sleep(hour):</label>
+                        <input type="text" asp-for="SleepDaily" class="form-control" />
+                        <span asp-validation-for="SleepDaily" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Weekly cardio:</label>
+                        <select name="ActivityFactor" asp-for="ActivityFactor">
+                            <option value="1.2">Desk job with little exercise</option>
+                            <option value="1.375">1-3 hrs/wk of strenuous cardio</option>
+                            <option value="1.55">3-5 hrs/wk of strenuous cardio</option>
+                            <option value="1.725">5-6 hrs/wk of strenuous cardio</option>
+                            <option value="1.9">7-21 hrs/wk of strenuous cardio</option>
+                        </select>
+
+                        <span asp-validation-for="ActivityFactor" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Your bodyfat percentage:(<a href="https://www.calculator.net/body-fat-calculator.html">Help</a>)</label>
+                        <input type="text" asp-for="BodyFatPercentage" class="form-control" />
+                        <span asp-validation-for="BodyFatPercentage" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your predicted yearly muscle gain(kg):</label>
+                        <select name="PredictedYearlyMuscleGain" asp-for="PredictedYearlyMuscleGain">
+                            <option value="0">00 kg/yr - no gains</option>
+                            <option value="7000">7 kg/yr - newbie teen average</option>
+                            <option value="18000">18 kg/yr - newbie teen max</option>
+                            <option value="4500">4,5 kg/yr - newbie adult average</option>
+                            <option value="9000">9 kg/yr - newbie adult max">20 kg/yr - newbie adult max</option>
+                            <option value="2500">2,5 kg/yr - experienced adult average</option>
+                            <option value="4500">4,5 kg/yr - experienced adult max</option>
+                            <option value="28000">28 kg/yr - non-natty lifter</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="submit" class="btn btn-success" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/js/site.js"></script>
+</body>
+</html>

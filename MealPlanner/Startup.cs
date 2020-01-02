@@ -1,3 +1,4 @@
+using AutoMapper;
 using MealPlanner.Data;
 using MealPlanner.Models;
 using MealPlanner.Models.Repositories;
@@ -36,7 +37,9 @@ namespace MealPlanner
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<MealPlan>(mp => MealPlan.GetPlan(mp));
-
+            
+            services.AddAutoMapper();
+            
             services.AddHttpContextAccessor();
             services.AddSession();
 

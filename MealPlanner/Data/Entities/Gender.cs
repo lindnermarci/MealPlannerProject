@@ -7,6 +7,6 @@ namespace MealPlanner.Models
 {
     public enum Gender
     {
-        MAN, WOMEN, NOTSPECIFIED
+        MALE, FEMALE, NOTSPECIFIED
     }
 }

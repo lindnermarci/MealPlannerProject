@@ -11,5 +11,6 @@ namespace MealPlanner.ViewModels
     {
         public MealPlan MealPlan { get; set; }
         public List<decimal> TotalCalories { get; set; }
+        public float DailyCalorieGoal { get; set; }
     }
 }

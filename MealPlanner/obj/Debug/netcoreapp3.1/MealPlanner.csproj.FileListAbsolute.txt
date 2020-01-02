@@ -114,7 +114,6 @@ F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Views\MealPlan\Index.cshtml.g.cs
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Views\Meal\Details.cshtml.g.cs
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Views\Meal\List.cshtml.g.cs
-F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Views\Order\Checkout.cshtml.g.cs
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\CategoryMenu\Default.cshtml.g.cs
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Carousel.cshtml.g.cs
@@ -204,8 +203,6 @@ F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\MealPlanner.Views.pdb
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\MealPlanner.dll
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\MealPlanner.pdb
-F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\MealPlanner.MvcApplicationPartsAssemblyInfo.cs
-F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\MealPlanner.MvcApplicationPartsAssemblyInfo.cache
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
@@ -215,3 +212,9 @@ F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Views\Home\Contact.cshtml.g.cs
+F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\bin\Debug\netcoreapp3.1\AutoMapper.dll
+F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\MealPlanner.MvcApplicationPartsAssemblyInfo.cs
+F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\MealPlanner.MvcApplicationPartsAssemblyInfo.cache
+F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Views\Person\PersonInformation.cshtml.g.cs
+F:\documents\2019-20-01\projektmunka\MealPlanner3\MealPlannerProject\MealPlanner\obj\Debug\netcoreapp3.1\Razor\Views\Person\PersonSaveComplete.cshtml.g.cs
