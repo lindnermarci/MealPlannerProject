@@ -13,6 +13,16 @@
     <Compile Remove="Migrations\20191231154019_RequiredMeal.Designer.cs" />
     <Compile Remove="Migrations\20191231193851_MealPlanReferenceAdded.cs" />
     <Compile Remove="Migrations\20191231193851_MealPlanReferenceAdded.Designer.cs" />
+    <Compile Remove="Migrations\20200103083844_User.cs" />
+    <Compile Remove="Migrations\20200103083844_User.Designer.cs" />
+    <Compile Remove="Migrations\20200104144533_MealPlanRef.cs" />
+    <Compile Remove="Migrations\20200104144533_MealPlanRef.Designer.cs" />
+    <Compile Remove="Migrations\20200104215458_MealPlanItemId.cs" />
+    <Compile Remove="Migrations\20200104215458_MealPlanItemId.Designer.cs" />
+    <Compile Remove="Migrations\20200104215852_MralPlanItemId.cs" />
+    <Compile Remove="Migrations\20200104215852_MralPlanItemId.Designer.cs" />
+    <Compile Remove="Migrations\20200104220159_MealPlanItem.cs" />
+    <Compile Remove="Migrations\20200104220159_MealPlanItem.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

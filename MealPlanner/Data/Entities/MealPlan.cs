@@ -43,22 +43,21 @@ namespace MealPlanner.Models
 
         public void AddToPlan(Meal meal, int day, int amount)
         {
-           
-            MealPlanItem item = appDbContext.MealPlanItems.FirstOrDefault();
-            
+                       
             var mealPlanItem =
                     appDbContext.MealPlanItems.SingleOrDefault(
-                        item => item.Meal.MealId == meal.MealId && item.MealPlanId == MealPlanId);
+                        item => item.Meal.MealId == meal.MealId && item.MealplanIdentifier == MealPlanId && item.DayOfWeek == (DayOfWeek)day);
 
             if (mealPlanItem == null)
             {
                 mealPlanItem = new MealPlanItem
                 {
-                    MealPlanId = MealPlanId,
+                    MealplanIdentifier = MealPlanId,
                     Meal = meal,
                     Amount = amount,
                     DayOfWeek = (DayOfWeek)day
                 };
+                meal.ItemMealPlanId = mealPlanItem.MealPlanItemId;
 
                 appDbContext.MealPlanItems.Add(mealPlanItem);
 
@@ -69,6 +68,8 @@ namespace MealPlanner.Models
             }
 
             appDbContext.SaveChanges();
+
+
         }
 
         internal void RemoveAllFromPlan()
@@ -82,11 +83,11 @@ namespace MealPlanner.Models
             MealPlanItems?.Clear();
         }
 
-        public int RemoveFromPlan(Meal Meal)
+        public int RemoveFromPlan(Meal meal, int dayOfWeek)
         {
             var mealPlanItem =
                     appDbContext.MealPlanItems.SingleOrDefault(
-                        item => item.Meal.MealId == Meal.MealId && item.MealPlanId == MealPlanId);
+                        item => item.Meal.MealId == meal.MealId && item.MealplanIdentifier == MealPlanId && item.DayOfWeek == (DayOfWeek)dayOfWeek);
 
             var localAmount = 0;
 
@@ -103,7 +104,7 @@ namespace MealPlanner.Models
         public List<MealPlanItem> GetMealPlanItems()
         {
             return MealPlanItems ?? (MealPlanItems =
-                       appDbContext.MealPlanItems.Where(c => c.MealPlanId == MealPlanId)
+                       appDbContext.MealPlanItems.Where(c => c.MealplanIdentifier == MealPlanId)
                            .Include(s => s.Meal)
                            .ToList());
         }
@@ -112,7 +113,7 @@ namespace MealPlanner.Models
         {
             var mealPlanItems = appDbContext
                 .MealPlanItems
-                .Where(x => x.MealPlanId == MealPlanId);
+                .Where(x => x.MealplanIdentifier == MealPlanId);
 
             appDbContext.MealPlanItems.RemoveRange(mealPlanItems);
 
@@ -123,7 +124,7 @@ namespace MealPlanner.Models
         {
             decimal[] calories = new decimal[7];
 
-            var total = appDbContext.MealPlanItems.Where(x => x.MealPlanId == MealPlanId);
+            var total = appDbContext.MealPlanItems.Where(x => x.MealplanIdentifier == MealPlanId);
 
             foreach (var item in total)
             {

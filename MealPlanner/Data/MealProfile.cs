@@ -13,7 +13,7 @@ namespace MealPlanner.Data
     {
         public MealProfile()
         {
-            this.CreateMap<Person, PersonViewModel>()
+            this.CreateMap<User, PersonViewModel>()
                 .ReverseMap();
         }
     }

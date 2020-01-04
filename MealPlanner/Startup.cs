@@ -31,7 +31,7 @@ namespace MealPlanner
                     );
             });
 
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
+            services.AddDefaultIdentity<User>().AddEntityFrameworkStores<AppDbContext>();
             
             services.AddScoped<IMealRepository, MealRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();

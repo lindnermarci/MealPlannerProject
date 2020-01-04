@@ -13,6 +13,6 @@ namespace MealPlanner.Models.Entities
         public Meal Meal { get; set; }
         public DayOfWeek DayOfWeek { get; set; }
         public int Amount { get; set; }
-        public string MealPlanId { get; set; }
+        public string MealplanIdentifier { get; set; }
     }
 }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using MealPlanner.Data;
 using MealPlanner.Models;
 using MealPlanner.Models.Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MealPlanner.Modles.Repositories
 {
@@ -18,66 +21,81 @@ namespace MealPlanner.Modles.Repositories
         {
             this.appDbContext = appDbContext;
             this.mealPlan = mealPlan;
+            this.mealPlan = mealPlan;        
         }
-        public float calculateTDEE()
+
+        public int calculateCalorieGoal(string id)
         {
-            var person = appDbContext.People.FirstOrDefault();
-            double RMR = 0;
-            if (person != null)
+            var user = appDbContext.Users.Where(p => p.Id.Equals(id)).FirstOrDefault();
+            return (int)(calculateUserTDEE(id) * user.CalorieSurplus);
+        }
+        public List<int> calculateMacros(string id)
+        {
+            var totalCalories = calculateCalorieGoal(id);
+            var user = appDbContext.Users.Where(p => p.Id.Equals(id)).FirstOrDefault();
+            double proteinCalories = user.Weight * 2 * 4;
+            double fatCalories = 0;
+            switch (user.NutritionType)
             {
-                if (person.Gender == Gender.MALE)
+                case Data.Entities.NutritionType.FAT:
+                    fatCalories = (int)Math.Round(totalCalories * 0.48);
+                    break;
+                case Data.Entities.NutritionType.CARB:
+                    fatCalories = (int)Math.Round(totalCalories * 0.23);
+                    break;
+                default:
+                    break;
+            }
+            double carbCalories = totalCalories - proteinCalories - fatCalories;
+            return new List<int>() { (int)Math.Round(proteinCalories / 4), (int)Math.Round(fatCalories / 9), (int)Math.Round(carbCalories / 4) };
+        }
+
+        public int calculateUserTDEE(string id)
+        {
+            var user = appDbContext.Users.Where(p => p.Id.Equals(id)).FirstOrDefault();
+            double RMR = 0;
+            if (user != null)
+            {
+                if (user.Gender == Gender.MALE)
                 {
                     //Miffin-St. Jeor formula
-                    RMR = 9.99 * person.Weight + 6.25 * person.Height - 4.92 * person.Age + 5;
+                    RMR = 9.99 * user.Weight + 6.25 * user.Height - 4.92 * user.Age + 5;
                 }
                 else
                 {
                     //Miffin-St. Jeor formula
-                    RMR = 9.99 * person.Weight + 6.25 * person.Height - 4.92 * person.Age - 161;
+                    RMR = 9.99 * user.Weight + 6.25 * user.Height - 4.92 * user.Age - 161;
                 }
-                return person.ActivityFactor * (float)RMR;
+                return (int)Math.Round(user.ActivityFactor * (float)RMR);
             }
             return 0;
             
         }
 
-        public int calculateRequiredDailyProtein()
+
+        public User getUser(string id)
         {
-            return 0;
+            return appDbContext.Users.Where(p => p.Id.Equals(id)).FirstOrDefault();
         }
 
-        public int calculateYearlyMuscleGain()
+        public int getUserDailyCalories(string id)
         {
-            return 0;
+            int calories = (int)(getUser(id).CalorieSurplus * calculateUserTDEE(id));
+            return calories;
         }
 
-        public Person getPerson()
+        public void saveUser(User user)
         {
-            ISession session = services.GetRequiredService<IHttpContextAccessor>()?
-            .HttpContext.Session;
 
-            var context = services.GetService<AppDbContext>();
+            
+            user.MealPlan = mealPlan;
 
-            string mealPlanId = session.GetString("MealPlanId") ?? Guid.NewGuid().ToString();
-
-            session.SetString("MealPlanId", mealPlanId);
-            return appDbContext.People.FirstOrDefault();
-        }
-
-        public void savePerson(Person person)
-        {
-            person.MealPlanDetails = (new MealPlanDetails
-            {
-                MealPlan = mealPlan,
-                Created = DateTime.Now
-            });
-
-            appDbContext.People.Add(person);
+            appDbContext.Users.Add(user);
 
 
             appDbContext.SaveChanges();
         }
 
-       
+
     }
 }

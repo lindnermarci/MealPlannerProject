@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using MealPlanner.Data.Entities;
+using MealPlanner.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,14 +21,14 @@ namespace MealPlanner.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<User> userManager,
+            SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -60,6 +62,32 @@ namespace MealPlanner.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [StringLength(20)]
+            public string FirstName { get; set; }
+            [Required]
+            [StringLength(20)]
+            public string LastName { get; set; }
+            [Range(14, 120)]
+            public int Age { get; set; }
+            [Range(20, 140)]
+            public int Weight { get; set; }
+            public Gender Gender { get; set; }
+            [Range(80, 240)]
+            public int Height { get; set; }
+            //[Range(3, 7)]
+            public int NumOfMealsPerDay { get; set; }
+            [Range(5, 16)]
+            public int SleepDaily { get; set; }
+            //[Range(1.2, 1.9)]
+            public float ActivityFactor { get; set; }
+            [Range(4, 60)]
+            public int BodyFatPercentage { get; set; }
+            //[Range(0, 10000)]
+            public int PredictedYearlyMuscleGain { get; set; }
+            public decimal CalorieSurplus { get; set; }
+            public NutritionType NutritionType { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -74,7 +102,7 @@ namespace MealPlanner.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new User { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, Age = Input.Age, Weight = Input.Weight, Gender = Input.Gender, Height = Input.Height, NumOfMealsPerDay = Input.NumOfMealsPerDay, SleepDaily = Input.SleepDaily, ActivityFactor = Input.ActivityFactor, BodyFatPercentage = Input.BodyFatPercentage, PredictedYearlyMuscleGain = Input.PredictedYearlyMuscleGain, CalorieSurplus = Input.CalorieSurplus, NutritionType = Input.NutritionType};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

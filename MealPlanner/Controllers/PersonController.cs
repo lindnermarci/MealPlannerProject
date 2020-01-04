@@ -8,6 +8,7 @@ using MealPlanner.Models;
 using MealPlanner.Modles.Repositories;
 using MealPlanner.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MealPlanner.Controllers
@@ -17,11 +18,13 @@ namespace MealPlanner.Controllers
     {
         private readonly IPersonRepository personRepository;
         private readonly IMapper mapper;
+        private readonly UserManager<User> userManager;
 
-        public PersonController(IPersonRepository personRepository, IMapper mapper)
+        public PersonController(IPersonRepository personRepository, IMapper mapper, UserManager<User> userManager)
         {
             this.personRepository = personRepository;
             this.mapper = mapper;
+            this.userManager = userManager;
         }
         [HttpGet]
         public IActionResult PersonInformation()
@@ -32,14 +35,16 @@ namespace MealPlanner.Controllers
         [HttpPost]
         public RedirectToActionResult PersonSave(PersonViewModel model)
         {
-            var person = mapper.Map<Person>(model);
-            personRepository.savePerson(person);
+            var person = mapper.Map<User>(model);
+            personRepository.saveUser(person);
             return RedirectToAction("PersonSaveComplete");
         }
 
         public IActionResult PersonSaveComplete()
         {
-            var person = personRepository.getPerson();
+            var id = userManager.GetUserId(User); // Get user id:
+
+            var person = personRepository.getUser(id);
             var personView = mapper.Map<PersonViewModel>(person);
             return View(personView);
         }

@@ -23,15 +23,15 @@ namespace MealPlanner.ViewModels
         public Gender Gender { get; set; }
         [Range(80, 240)]
         public int Height { get; set; }
-        [Range(3, 7)]
+        //[Range(3, 7)]
         public int NumOfMealsPerDay { get; set; }
         [Range(5, 16)]
         public int SleepDaily { get; set; }
-        [Range(1.2, 1.9)]
+        //[Range(1.2, 1.9)]
         public decimal ActivityFactor { get; set; }
         [Range(4, 60)]
         public int BodyFatPercentage { get; set; }
-        [Range(3000, 10000)]
+        //[Range(3000, 10000)]
         public int PredictedYearlyMuscleGain { get; set; }
 
     }

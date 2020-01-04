@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
+using MealPlanner.Data.Entities;
 
 namespace MealPlanner.Models
 {
     public class Meal
     {
         public int MealId { get; set; }
+        public int ItemMealPlanId { get; set; }
         public string Name { get; set; }
-        public List<Ingredient> Ingredients{ get; set; }
+        public List<IngredientDetail> IngredientDetails{ get; set; }
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }
         public int PreparationTime { get; set; }

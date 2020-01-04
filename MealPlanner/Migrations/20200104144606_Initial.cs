@@ -22,31 +22,6 @@ namespace MealPlanner.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -72,29 +47,6 @@ namespace MealPlanner.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "People",
-                columns: table => new
-                {
-                    PersonId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    Age = table.Column<int>(nullable: false),
-                    Weight = table.Column<int>(nullable: false),
-                    Gender = table.Column<int>(nullable: false),
-                    Height = table.Column<int>(nullable: false),
-                    NumOfMealsPerDay = table.Column<int>(nullable: false),
-                    SleepDaily = table.Column<int>(nullable: false),
-                    ActivityFactor = table.Column<float>(nullable: false),
-                    BodyFatPercentage = table.Column<int>(nullable: false),
-                    PredictedYearlyMuscleGain = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_People", x => x.PersonId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -113,6 +65,153 @@ namespace MealPlanner.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Meals",
+                columns: table => new
+                {
+                    MealId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    ShortDescription = table.Column<string>(nullable: true),
+                    LongDescription = table.Column<string>(nullable: true),
+                    PreparationTime = table.Column<int>(nullable: false),
+                    IsMealOfTheWeek = table.Column<bool>(nullable: false),
+                    ImageUrl = table.Column<string>(nullable: true),
+                    ImageThumbnailUrl = table.Column<string>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: false),
+                    Calories = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Meals", x => x.MealId);
+                    table.ForeignKey(
+                        name: "FK_Meals_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MealPlanDetail",
+                columns: table => new
+                {
+                    MealPlanDetailId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MealPlanId = table.Column<string>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false),
+                    PersonId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MealPlanDetail", x => x.MealPlanDetailId);
+                    table.ForeignKey(
+                        name: "FK_MealPlanDetail_MealPlan_MealPlanId",
+                        column: x => x.MealPlanId,
+                        principalTable: "MealPlan",
+                        principalColumn: "MealPlanId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ingredient",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    ProteinContent = table.Column<int>(nullable: false),
+                    CarbohidrateContent = table.Column<int>(nullable: false),
+                    FatContent = table.Column<int>(nullable: false),
+                    Calories = table.Column<int>(nullable: false),
+                    FiberContent = table.Column<int>(nullable: false),
+                    MealId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ingredient", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Ingredient_Meals_MealId",
+                        column: x => x.MealId,
+                        principalTable: "Meals",
+                        principalColumn: "MealId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MealPlanItems",
+                columns: table => new
+                {
+                    MealPlanItemId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MealId = table.Column<int>(nullable: true),
+                    DayOfWeek = table.Column<int>(nullable: false),
+                    Amount = table.Column<int>(nullable: false),
+                    MealPlanId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MealPlanItems", x => x.MealPlanItemId);
+                    table.ForeignKey(
+                        name: "FK_MealPlanItems_Meals_MealId",
+                        column: x => x.MealId,
+                        principalTable: "Meals",
+                        principalColumn: "MealId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MealPlanItems_MealPlan_MealPlanId",
+                        column: x => x.MealPlanId,
+                        principalTable: "MealPlan",
+                        principalColumn: "MealPlanId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    PersonId = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Age = table.Column<int>(nullable: false),
+                    Weight = table.Column<int>(nullable: false),
+                    Gender = table.Column<int>(nullable: false),
+                    Height = table.Column<int>(nullable: false),
+                    NumOfMealsPerDay = table.Column<int>(nullable: false),
+                    SleepDaily = table.Column<int>(nullable: false),
+                    ActivityFactor = table.Column<float>(nullable: false),
+                    BodyFatPercentage = table.Column<int>(nullable: false),
+                    PredictedYearlyMuscleGain = table.Column<int>(nullable: false),
+                    MealPlanDetailsMealPlanDetailId = table.Column<int>(nullable: true),
+                    CalorieSurplus = table.Column<decimal>(nullable: false),
+                    NutritionType = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_MealPlanDetail_MealPlanDetailsMealPlanDetailId",
+                        column: x => x.MealPlanDetailsMealPlanDetailId,
+                        principalTable: "MealPlanDetail",
+                        principalColumn: "MealPlanDetailId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -200,113 +299,6 @@ namespace MealPlanner.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Meals",
-                columns: table => new
-                {
-                    MealId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    ShortDescription = table.Column<string>(nullable: true),
-                    LongDescription = table.Column<string>(nullable: true),
-                    PreparationTime = table.Column<int>(nullable: false),
-                    IsMealOfTheWeek = table.Column<bool>(nullable: false),
-                    ImageUrl = table.Column<string>(nullable: true),
-                    ImageThumbnailUrl = table.Column<string>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: false),
-                    Calories = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Meals", x => x.MealId);
-                    table.ForeignKey(
-                        name: "FK_Meals_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MealPlanDetails",
-                columns: table => new
-                {
-                    MealPlanDetailsId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MealPlanId = table.Column<string>(nullable: true),
-                    Created = table.Column<DateTime>(nullable: false),
-                    PersonId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MealPlanDetails", x => x.MealPlanDetailsId);
-                    table.ForeignKey(
-                        name: "FK_MealPlanDetails_MealPlan_MealPlanId",
-                        column: x => x.MealPlanId,
-                        principalTable: "MealPlan",
-                        principalColumn: "MealPlanId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_MealPlanDetails_People_PersonId",
-                        column: x => x.PersonId,
-                        principalTable: "People",
-                        principalColumn: "PersonId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Ingredient",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    ProteinContent = table.Column<int>(nullable: false),
-                    CarbohidrateContent = table.Column<int>(nullable: false),
-                    FatContent = table.Column<int>(nullable: false),
-                    Calories = table.Column<int>(nullable: false),
-                    FiberContent = table.Column<int>(nullable: false),
-                    MealId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ingredient", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Ingredient_Meals_MealId",
-                        column: x => x.MealId,
-                        principalTable: "Meals",
-                        principalColumn: "MealId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MealPlanItems",
-                columns: table => new
-                {
-                    MealPlanItemId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MealId = table.Column<int>(nullable: true),
-                    DayOfWeek = table.Column<int>(nullable: false),
-                    Amount = table.Column<int>(nullable: false),
-                    MealPlanId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MealPlanItems", x => x.MealPlanItemId);
-                    table.ForeignKey(
-                        name: "FK_MealPlanItems_Meals_MealId",
-                        column: x => x.MealId,
-                        principalTable: "Meals",
-                        principalColumn: "MealId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_MealPlanItems_MealPlan_MealPlanId",
-                        column: x => x.MealPlanId,
-                        principalTable: "MealPlan",
-                        principalColumn: "MealPlanId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "CategoryId", "CategoryName", "Description" },
@@ -368,6 +360,11 @@ namespace MealPlanner.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_MealPlanDetailsMealPlanDetailId",
+                table: "AspNetUsers",
+                column: "MealPlanDetailsMealPlanDetailId");
+
+            migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "AspNetUsers",
                 column: "NormalizedEmail");
@@ -385,15 +382,9 @@ namespace MealPlanner.Migrations
                 column: "MealId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MealPlanDetails_MealPlanId",
-                table: "MealPlanDetails",
+                name: "IX_MealPlanDetail_MealPlanId",
+                table: "MealPlanDetail",
                 column: "MealPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MealPlanDetails_PersonId",
-                table: "MealPlanDetails",
-                column: "PersonId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_MealPlanItems_MealId",
@@ -432,9 +423,6 @@ namespace MealPlanner.Migrations
                 name: "Ingredient");
 
             migrationBuilder.DropTable(
-                name: "MealPlanDetails");
-
-            migrationBuilder.DropTable(
                 name: "MealPlanItems");
 
             migrationBuilder.DropTable(
@@ -444,16 +432,16 @@ namespace MealPlanner.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "People");
-
-            migrationBuilder.DropTable(
                 name: "Meals");
 
             migrationBuilder.DropTable(
-                name: "MealPlan");
+                name: "MealPlanDetail");
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "MealPlan");
         }
     }
 }

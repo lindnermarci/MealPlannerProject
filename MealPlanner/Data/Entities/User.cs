@@ -1,9 +1,10 @@
-﻿using MealPlanner.Models.Entities;
+﻿using MealPlanner.Data.Entities;
+using MealPlanner.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace MealPlanner.Models
 {
-    public class Person
+    public class User : IdentityUser
     {
         public int PersonId { get; set; }
         public string FirstName { get; set; }
@@ -17,7 +18,11 @@ namespace MealPlanner.Models
         public float ActivityFactor { get; set; }
         public int BodyFatPercentage { get; set; }
         public int PredictedYearlyMuscleGain { get; set; }
-        public MealPlanDetails MealPlanDetails { get; set; }
+        public MealPlan MealPlan { get; set; }
+
+        public decimal CalorieSurplus { get; set; }
+
+        public NutritionType NutritionType{ get; set; }
 
     }
 }

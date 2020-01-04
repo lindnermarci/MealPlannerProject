@@ -19,7 +19,6 @@
         <div class="col-md-6 offset-md-3">
             <div class="card card-body bg-light">
                 <form asp-action="PersonSave" asp-controller="Person" method="post" id="theForm">
-                    <div asp-validation-summary="ModelOnly"></div>
 
                     <div class="form-group">
                         <label asp-for="FirstName">Your First Name:</label>
@@ -75,8 +74,6 @@
                             <option value="5">5</option>
                             <option value="6">6</option>
                         </select>
-                        <span asp-validation-for="NumOfMealsPerDay" class="text-danger"></span>
-
                     </div>
 
                     <div class="form-group">
@@ -91,18 +88,16 @@
                         <select name="ActivityFactor" asp-for="ActivityFactor">
                             <option value="1.2">Desk job with little exercise</option>
                             <option value="1.375">1-3 hrs/wk of strenuous cardio</option>
-                            <option value="1.55">3-5 hrs/wk of strenuous cardio</option>
+                            <option value="1.55">3-5 hrs/wk of száétmegy a kezemstrenuous cardio</option>
                             <option value="1.725">5-6 hrs/wk of strenuous cardio</option>
                             <option value="1.9">7-21 hrs/wk of strenuous cardio</option>
                         </select>
-
-                        <span asp-validation-for="ActivityFactor" class="text-danger"></span>
 
                     </div>
 
                     <div class="form-group">
 
-                        <label>Your bodyfat percentage:(<a href="https://www.calculator.net/body-fat-calculator.html">Help</a>)</label>
+                        <label>Your bodyfat percentage:(<a href="https://www.calculator.net/body-fat-calculator.html">measure</a>)/(<a href ="https://d16kc6rd0714uz.cloudfront.net/wp-content/uploads/2017/01/visual-bodyfat-estimation-chart-men-women.jpg">estimate</a>)</label>
                         <input type="text" asp-for="BodyFatPercentage" class="form-control" />
                         <span asp-validation-for="BodyFatPercentage" class="text-danger"></span>
 

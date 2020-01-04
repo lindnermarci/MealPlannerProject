@@ -1,4 +1,6 @@
-﻿using MealPlanner.Models;
+﻿using System.Collections.Generic;
+using MealPlanner.Data.Entities;
+using MealPlanner.Models;
 using MealPlanner.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -6,13 +8,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MealPlanner.Data
 {
-    public class AppDbContext : IdentityDbContext<IdentityUser>
+    public class AppDbContext : IdentityDbContext<User>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
-        public DbSet<Person> People { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public DbSet<Meal> Meals { get; set; }
 
@@ -30,6 +32,35 @@ namespace MealPlanner.Data
             modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 3, CategoryName = "Deserts" });
 
             //seed Meals
+            Ingredient cal = new Ingredient(1, "califlower", 1.9, 5, 0.3, 24);
+            Ingredient nuts = new Ingredient(2, "nuts", 13, 18, 5, 440);
+            Ingredient soysauce = new Ingredient(3, "califlower", 4.8, 8, 0, 50);
+            Ingredient eggwhite = new Ingredient(4, "eggwhite", 11, 0, 0, 51);
+
+            modelBuilder.Entity<Ingredient>().HasData(cal);
+            modelBuilder.Entity<Ingredient>().HasData(nuts);
+            modelBuilder.Entity<Ingredient>().HasData(soysauce);
+            modelBuilder.Entity<Ingredient>().HasData(eggwhite);
+
+            var i1 = new IngredientDetail { Id = 1, Amount = 261, IngredientId = 1, MealId = 12 };
+            var i2 = new IngredientDetail { Id = 2, Amount = 62, IngredientId = 2, MealId = 12};
+            var i3 = new IngredientDetail { Id = 3, Amount = 23.7, IngredientId = 3, MealId = 12};
+            var i4 = new IngredientDetail { Id = 4, Amount = 9, IngredientId = 4, MealId = 12};
+
+            modelBuilder.Entity<IngredientDetail>().HasData(i1);
+            modelBuilder.Entity<IngredientDetail>().HasData(i2);
+            modelBuilder.Entity<IngredientDetail>().HasData(i3);
+            modelBuilder.Entity<IngredientDetail>().HasData(i4);
+
+
+            //Ingredient cal = new Ingredient(5, "califlower", 1.9, 5, 0.3, 24);
+            //Ingredient cal = new Ingredient(6, "califlower", 1.9, 5, 0.3, 24);
+            //Ingredient cal = new Ingredient(7, "califlower", 1.9, 5, 0.3, 24);
+            //Ingredient cal = new Ingredient(8, "califlower", 1.9, 5, 0.3, 24);
+            //Ingredient cal = new Ingredient(9, "califlower", 1.9, 5, 0.3, 24);
+            //Ingredient cal = new Ingredient(10, "califlower", 1.9, 5, 0.3, 24);
+
+
 
             modelBuilder.Entity<Meal>().HasData(new Meal
             {
@@ -188,6 +219,21 @@ namespace MealPlanner.Data
                     "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrycheesecakesmall.jpg",
                 Calories = 498
             });
+
+            modelBuilder.Entity<Meal>().HasData(new Meal
+            {
+                MealId = 12,
+                Name = "Cauliflower Egg White Scramble ",
+                ShortDescription = "Our famous egg scramble!",
+                LongDescription =
+        "1) Chop cauliflower in food processor or use pre-chopped cauliflower.2) Weigh out cauliflower and cook in microwave for 10 minutes.3) Weigh out soy sauce and put in frying pan on medium heat.4) Add hot, cooked cauliflower and simmer till dry.5) Add egg whites and cook till done.6) Weigh nuts and sprinkle on top.",
+                CategoryId = 2,
+                ImageUrl = "~/images/cal.jpg",
+                IsMealOfTheWeek = true,
+                ImageThumbnailUrl = "~/images/cal.jpg",
+                Calories = 220
+            });
+
         }
 
     }

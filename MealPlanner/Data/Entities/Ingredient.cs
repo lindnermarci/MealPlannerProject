@@ -4,10 +4,19 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int ProteinContent { get; set; }
-        public int CarbohidrateContent { get; set; }
-        public int FatContent { get; set; }
+        public double ProteinContent { get; set; }
+        public double CarbohidrateContent { get; set; }
+        public double FatContent { get; set; }
         public int Calories { get; set; }
-        public int FiberContent { get; set; }
+
+        public Ingredient(int id, string name, double proteinContent, double carbohidrateContent, double fatContent, int calories)
+        {
+            Id = id;
+            Name = name;
+            ProteinContent = proteinContent;
+            CarbohidrateContent = carbohidrateContent;
+            FatContent = fatContent;
+            Calories = calories;
+        }
     }
 }
