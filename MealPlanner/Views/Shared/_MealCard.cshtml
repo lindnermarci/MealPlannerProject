@@ -11,7 +11,7 @@
             <p>@Model.Calories.ToString()kcal</p>
         </div>
         <div class="addToPlan">
-            <form method="get" action="/MealPlan/AddToMealPlan">
+            <form method="get" asp-controller="MealPlan" asp-action="AddToMealPlan">
                 <select id="Day" name="day">
                     <option value="1">Monday</option>
                     <option value="2">Tuesday</option>

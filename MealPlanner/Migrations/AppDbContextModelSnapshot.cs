@@ -29,9 +29,6 @@ namespace MealPlanner.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
-                    b.Property<int>("IngredientId")
-                        .HasColumnType("int");
-
                     b.Property<int>("MealId")
                         .HasColumnType("int");
 
@@ -39,36 +36,38 @@ namespace MealPlanner.Migrations
 
                     b.HasIndex("MealId");
 
-                    b.ToTable("IngredientDetail");
+                    b.ToTable("IngredientDetails");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             Amount = 261.0,
-                            IngredientId = 1,
                             MealId = 12
                         },
                         new
                         {
                             Id = 2,
-                            Amount = 62.0,
-                            IngredientId = 2,
+                            Amount = 261.0,
                             MealId = 12
                         },
                         new
                         {
                             Id = 3,
-                            Amount = 23.699999999999999,
-                            IngredientId = 3,
+                            Amount = 261.0,
                             MealId = 12
                         },
                         new
                         {
                             Id = 4,
-                            Amount = 9.0,
-                            IngredientId = 4,
+                            Amount = 261.0,
                             MealId = 12
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Amount = 261.0,
+                            MealId = 11
                         });
                 });
 
@@ -140,10 +139,13 @@ namespace MealPlanner.Migrations
 
             modelBuilder.Entity("MealPlanner.Models.Ingredient", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IngredientId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<int>("Calories")
                         .HasColumnType("int");
@@ -154,52 +156,66 @@ namespace MealPlanner.Migrations
                     b.Property<double>("FatContent")
                         .HasColumnType("float");
 
+                    b.Property<int>("IngredientDetailId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("ProteinContent")
                         .HasColumnType("float");
 
-                    b.HasKey("Id");
+                    b.HasKey("IngredientId");
 
-                    b.ToTable("Ingredient");
+                    b.HasIndex("IngredientDetailId")
+                        .IsUnique();
+
+                    b.ToTable("Ingredients");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            IngredientId = 1,
+                            Amount = 3.3999999999999999,
                             Calories = 24,
-                            CarbohidrateContent = 5.0,
-                            FatContent = 0.29999999999999999,
+                            CarbohidrateContent = 0.29999999999999999,
+                            FatContent = 1.0,
+                            IngredientDetailId = 1,
                             Name = "califlower",
-                            ProteinContent = 1.8999999999999999
+                            ProteinContent = 4.0
                         },
                         new
                         {
-                            Id = 2,
-                            Calories = 440,
-                            CarbohidrateContent = 18.0,
-                            FatContent = 5.0,
+                            IngredientId = 2,
+                            Amount = 1.8999999999999999,
+                            Calories = 24,
+                            CarbohidrateContent = 0.29999999999999999,
+                            FatContent = 4.0,
+                            IngredientDetailId = 2,
                             Name = "nuts",
-                            ProteinContent = 13.0
+                            ProteinContent = 5.0
                         },
                         new
                         {
-                            Id = 3,
-                            Calories = 50,
-                            CarbohidrateContent = 8.0,
-                            FatContent = 0.0,
-                            Name = "califlower",
-                            ProteinContent = 4.7999999999999998
+                            IngredientId = 3,
+                            Amount = 1.8999999999999999,
+                            Calories = 24,
+                            CarbohidrateContent = 1.3,
+                            FatContent = 1.0,
+                            IngredientDetailId = 3,
+                            Name = "soy sauce",
+                            ProteinContent = 5.0
                         },
                         new
                         {
-                            Id = 4,
-                            Calories = 51,
-                            CarbohidrateContent = 0.0,
-                            FatContent = 0.0,
-                            Name = "eggwhite",
-                            ProteinContent = 11.0
+                            IngredientId = 4,
+                            Amount = 1.8999999999999999,
+                            Calories = 24,
+                            CarbohidrateContent = 0.29999999999999999,
+                            FatContent = 1.0,
+                            IngredientDetailId = 4,
+                            Name = "egg white",
+                            ProteinContent = 5.0
                         });
                 });
 
@@ -409,10 +425,10 @@ namespace MealPlanner.Migrations
                             ImageThumbnailUrl = "~/images/cal.jpg",
                             ImageUrl = "~/images/cal.jpg",
                             IsMealOfTheWeek = true,
-                            ItemMealPlanId = 0,
+                            ItemMealPlanId = 1,
                             LongDescription = "1) Chop cauliflower in food processor or use pre-chopped cauliflower.2) Weigh out cauliflower and cook in microwave for 10 minutes.3) Weigh out soy sauce and put in frying pan on medium heat.4) Add hot, cooked cauliflower and simmer till dry.5) Add egg whites and cook till done.6) Weigh nuts and sprinkle on top.",
                             Name = "Cauliflower Egg White Scramble ",
-                            PreparationTime = 0,
+                            PreparationTime = 20,
                             ShortDescription = "Our famous egg scramble!"
                         });
                 });
@@ -676,7 +692,7 @@ namespace MealPlanner.Migrations
 
             modelBuilder.Entity("MealPlanner.Data.Entities.IngredientDetail", b =>
                 {
-                    b.HasOne("MealPlanner.Models.Meal", null)
+                    b.HasOne("MealPlanner.Models.Meal", "Meal")
                         .WithMany("IngredientDetails")
                         .HasForeignKey("MealId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -692,6 +708,15 @@ namespace MealPlanner.Migrations
                     b.HasOne("MealPlanner.Models.MealPlan", null)
                         .WithMany("MealPlanItems")
                         .HasForeignKey("MealPlanId");
+                });
+
+            modelBuilder.Entity("MealPlanner.Models.Ingredient", b =>
+                {
+                    b.HasOne("MealPlanner.Data.Entities.IngredientDetail", null)
+                        .WithOne("Ingredient")
+                        .HasForeignKey("MealPlanner.Models.Ingredient", "IngredientDetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MealPlanner.Models.Meal", b =>

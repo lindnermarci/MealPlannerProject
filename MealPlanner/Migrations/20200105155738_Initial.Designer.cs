@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MealPlanner.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200104144606_Initial")]
+    [Migration("20200105155738_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,52 @@ namespace MealPlanner.Migrations
                 .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("MealPlanner.Data.Entities.IngredientDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<int>("MealId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MealId");
+
+                    b.ToTable("IngredientDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 261.0,
+                            MealId = 12
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 261.0,
+                            MealId = 12
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Amount = 261.0,
+                            MealId = 12
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Amount = 261.0,
+                            MealId = 12
+                        });
+                });
 
             modelBuilder.Entity("MealPlanner.Models.Category", b =>
                 {
@@ -56,29 +102,6 @@ namespace MealPlanner.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MealPlanner.Models.Entities.MealPlanDetail", b =>
-                {
-                    b.Property<int>("MealPlanDetailId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MealPlanId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MealPlanDetailId");
-
-                    b.HasIndex("MealPlanId");
-
-                    b.ToTable("MealPlanDetail");
-                });
-
             modelBuilder.Entity("MealPlanner.Models.Entities.MealPlanItem", b =>
                 {
                     b.Property<int>("MealPlanItemId")
@@ -98,6 +121,9 @@ namespace MealPlanner.Migrations
                     b.Property<string>("MealPlanId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("MealplanIdentifier")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("MealPlanItemId");
 
                     b.HasIndex("MealId");
@@ -109,37 +135,84 @@ namespace MealPlanner.Migrations
 
             modelBuilder.Entity("MealPlanner.Models.Ingredient", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IngredientId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
                     b.Property<int>("Calories")
                         .HasColumnType("int");
 
-                    b.Property<int>("CarbohidrateContent")
-                        .HasColumnType("int");
+                    b.Property<double>("CarbohidrateContent")
+                        .HasColumnType("float");
 
-                    b.Property<int>("FatContent")
-                        .HasColumnType("int");
+                    b.Property<double>("FatContent")
+                        .HasColumnType("float");
 
-                    b.Property<int>("FiberContent")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MealId")
+                    b.Property<int>("IngredientDetailId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProteinContent")
-                        .HasColumnType("int");
+                    b.Property<double>("ProteinContent")
+                        .HasColumnType("float");
 
-                    b.HasKey("Id");
+                    b.HasKey("IngredientId");
 
-                    b.HasIndex("MealId");
+                    b.HasIndex("IngredientDetailId")
+                        .IsUnique();
 
-                    b.ToTable("Ingredient");
+                    b.ToTable("Ingredients");
+
+                    b.HasData(
+                        new
+                        {
+                            IngredientId = 1,
+                            Amount = 3.3999999999999999,
+                            Calories = 24,
+                            CarbohidrateContent = 0.29999999999999999,
+                            FatContent = 1.0,
+                            IngredientDetailId = 1,
+                            Name = "califlower",
+                            ProteinContent = 4.0
+                        },
+                        new
+                        {
+                            IngredientId = 2,
+                            Amount = 1.8999999999999999,
+                            Calories = 24,
+                            CarbohidrateContent = 0.29999999999999999,
+                            FatContent = 4.0,
+                            IngredientDetailId = 2,
+                            Name = "nuts",
+                            ProteinContent = 5.0
+                        },
+                        new
+                        {
+                            IngredientId = 3,
+                            Amount = 1.8999999999999999,
+                            Calories = 24,
+                            CarbohidrateContent = 1.3,
+                            FatContent = 1.0,
+                            IngredientDetailId = 3,
+                            Name = "soy sauce",
+                            ProteinContent = 5.0
+                        },
+                        new
+                        {
+                            IngredientId = 4,
+                            Amount = 1.8999999999999999,
+                            Calories = 24,
+                            CarbohidrateContent = 0.29999999999999999,
+                            FatContent = 1.0,
+                            IngredientDetailId = 4,
+                            Name = "egg white",
+                            ProteinContent = 5.0
+                        });
                 });
 
             modelBuilder.Entity("MealPlanner.Models.Meal", b =>
@@ -163,6 +236,9 @@ namespace MealPlanner.Migrations
 
                     b.Property<bool>("IsMealOfTheWeek")
                         .HasColumnType("bit");
+
+                    b.Property<int>("ItemMealPlanId")
+                        .HasColumnType("int");
 
                     b.Property<string>("LongDescription")
                         .HasColumnType("nvarchar(max)");
@@ -191,6 +267,7 @@ namespace MealPlanner.Migrations
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/applepiesmall.jpg",
                             ImageUrl = "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2019/04/sausage-casserole.jpg?itok=kWEQd0OP",
                             IsMealOfTheWeek = true,
+                            ItemMealPlanId = 0,
                             LongDescription = "Make this easy chipolata, bean and roasted veg one-pan dish for a healthy, flavour-packed meal the whole family will love. It offers four of your 5-a-day",
                             Name = "Sausage & white bean casserole ",
                             PreparationTime = 0,
@@ -204,6 +281,7 @@ namespace MealPlanner.Migrations
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/blueberrycheesecakesmall.jpg",
                             ImageUrl = "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/06/gfkids_onepanvegeggs.jpg?itok=XbNYQTmJ",
                             IsMealOfTheWeek = false,
+                            ItemMealPlanId = 0,
                             LongDescription = "With courgette, peppers and eggs, this vegetarian dish is a filling, healthy breakfast for all the family – kids will enjoy dipping toast into soft egg yolk",
                             Name = "One-pan egg & veg brunch",
                             PreparationTime = 0,
@@ -217,6 +295,7 @@ namespace MealPlanner.Migrations
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cheesecakesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cheesecake.jpg",
                             IsMealOfTheWeek = false,
+                            ItemMealPlanId = 0,
                             LongDescription = "Icing carrot cake jelly-o cheesecake. Sweet roll marzipan marshmallow toffee brownie brownie candy tootsie roll. Chocolate cake gingerbread tootsie roll oat cake Meal chocolate bar cookie dragée brownie. Lollipop cotton candy cake bear claw oat cake. Dragée candy canes dessert tart. Marzipan dragée gummies lollipop jujubes chocolate bar candy canes. Icing gingerbread chupa chups cotton candy cookie sweet icing bonbon gummies. Gummies lollipop brownie biscuit danish chocolate cake. Danish powder cookie macaroon chocolate donut tart. Carrot cake dragée croissant lemon drops liquorice lemon drops cookie lollipop toffee. Carrot cake carrot cake liquorice sugar plum topping bonbon Meal muffin jujubes. Jelly pastry wafer tart caramels bear claw. Tiramisu tart Meal cake danish lemon drops. Brownie cupcake dragée gummies.",
                             Name = "Cheese Cake",
                             PreparationTime = 0,
@@ -230,6 +309,7 @@ namespace MealPlanner.Migrations
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cherrypiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cherrypie.jpg",
                             IsMealOfTheWeek = false,
+                            ItemMealPlanId = 0,
                             LongDescription = "Icing carrot cake jelly-o cheesecake. Sweet roll marzipan marshmallow toffee brownie brownie candy tootsie roll. Chocolate cake gingerbread tootsie roll oat cake Meal chocolate bar cookie dragée brownie. Lollipop cotton candy cake bear claw oat cake. Dragée candy canes dessert tart. Marzipan dragée gummies lollipop jujubes chocolate bar candy canes. Icing gingerbread chupa chups cotton candy cookie sweet icing bonbon gummies. Gummies lollipop brownie biscuit danish chocolate cake. Danish powder cookie macaroon chocolate donut tart. Carrot cake dragée croissant lemon drops liquorice lemon drops cookie lollipop toffee. Carrot cake carrot cake liquorice sugar plum topping bonbon Meal muffin jujubes. Jelly pastry wafer tart caramels bear claw. Tiramisu tart Meal cake danish lemon drops. Brownie cupcake dragée gummies.",
                             Name = "Cherry Meal",
                             PreparationTime = 0,
@@ -243,6 +323,7 @@ namespace MealPlanner.Migrations
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/christmasapplepiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/christmasapplepie.jpg",
                             IsMealOfTheWeek = false,
+                            ItemMealPlanId = 0,
                             LongDescription = "Icing carrot cake jelly-o cheesecake. Sweet roll marzipan marshmallow toffee brownie brownie candy tootsie roll. Chocolate cake gingerbread tootsie roll oat cake Meal chocolate bar cookie dragée brownie. Lollipop cotton candy cake bear claw oat cake. Dragée candy canes dessert tart. Marzipan dragée gummies lollipop jujubes chocolate bar candy canes. Icing gingerbread chupa chups cotton candy cookie sweet icing bonbon gummies. Gummies lollipop brownie biscuit danish chocolate cake. Danish powder cookie macaroon chocolate donut tart. Carrot cake dragée croissant lemon drops liquorice lemon drops cookie lollipop toffee. Carrot cake carrot cake liquorice sugar plum topping bonbon Meal muffin jujubes. Jelly pastry wafer tart caramels bear claw. Tiramisu tart Meal cake danish lemon drops. Brownie cupcake dragée gummies.",
                             Name = "Christmas Apple Meal",
                             PreparationTime = 0,
@@ -256,6 +337,7 @@ namespace MealPlanner.Migrations
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/peachpiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/peachpie.jpg",
                             IsMealOfTheWeek = false,
+                            ItemMealPlanId = 0,
                             LongDescription = "Icing carrot cake jelly-o cheesecake. Sweet roll marzipan marshmallow toffee brownie brownie candy tootsie roll. Chocolate cake gingerbread tootsie roll oat cake Meal chocolate bar cookie dragée brownie. Lollipop cotton candy cake bear claw oat cake. Dragée candy canes dessert tart. Marzipan dragée gummies lollipop jujubes chocolate bar candy canes. Icing gingerbread chupa chups cotton candy cookie sweet icing bonbon gummies. Gummies lollipop brownie biscuit danish chocolate cake. Danish powder cookie macaroon chocolate donut tart. Carrot cake dragée croissant lemon drops liquorice lemon drops cookie lollipop toffee. Carrot cake carrot cake liquorice sugar plum topping bonbon Meal muffin jujubes. Jelly pastry wafer tart caramels bear claw. Tiramisu tart Meal cake danish lemon drops. Brownie cupcake dragée gummies.",
                             Name = "Cranberry Meal",
                             PreparationTime = 0,
@@ -269,6 +351,7 @@ namespace MealPlanner.Migrations
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/pumpkinpiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/pumpkinpie.jpg",
                             IsMealOfTheWeek = false,
+                            ItemMealPlanId = 0,
                             LongDescription = "Icing carrot cake jelly-o cheesecake. Sweet roll marzipan marshmallow toffee brownie brownie candy tootsie roll. Chocolate cake gingerbread tootsie roll oat cake Meal chocolate bar cookie dragée brownie. Lollipop cotton candy cake bear claw oat cake. Dragée candy canes dessert tart. Marzipan dragée gummies lollipop jujubes chocolate bar candy canes. Icing gingerbread chupa chups cotton candy cookie sweet icing bonbon gummies. Gummies lollipop brownie biscuit danish chocolate cake. Danish powder cookie macaroon chocolate donut tart. Carrot cake dragée croissant lemon drops liquorice lemon drops cookie lollipop toffee. Carrot cake carrot cake liquorice sugar plum topping bonbon Meal muffin jujubes. Jelly pastry wafer tart caramels bear claw. Tiramisu tart Meal cake danish lemon drops. Brownie cupcake dragée gummies.",
                             Name = "Peach Meal",
                             PreparationTime = 0,
@@ -282,6 +365,7 @@ namespace MealPlanner.Migrations
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypie.jpg",
                             IsMealOfTheWeek = true,
+                            ItemMealPlanId = 0,
                             LongDescription = "Icing carrot cake jelly-o cheesecake. Sweet roll marzipan marshmallow toffee brownie brownie candy tootsie roll. Chocolate cake gingerbread tootsie roll oat cake Meal chocolate bar cookie dragée brownie. Lollipop cotton candy cake bear claw oat cake. Dragée candy canes dessert tart. Marzipan dragée gummies lollipop jujubes chocolate bar candy canes. Icing gingerbread chupa chups cotton candy cookie sweet icing bonbon gummies. Gummies lollipop brownie biscuit danish chocolate cake. Danish powder cookie macaroon chocolate donut tart. Carrot cake dragée croissant lemon drops liquorice lemon drops cookie lollipop toffee. Carrot cake carrot cake liquorice sugar plum topping bonbon Meal muffin jujubes. Jelly pastry wafer tart caramels bear claw. Tiramisu tart Meal cake danish lemon drops. Brownie cupcake dragée gummies.",
                             Name = "Pumpkin Meal",
                             PreparationTime = 0,
@@ -295,6 +379,7 @@ namespace MealPlanner.Migrations
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/rhubarbpiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/rhubarbpie.jpg",
                             IsMealOfTheWeek = true,
+                            ItemMealPlanId = 0,
                             LongDescription = "Icing carrot cake jelly-o cheesecake. Sweet roll marzipan marshmallow toffee brownie brownie candy tootsie roll. Chocolate cake gingerbread tootsie roll oat cake Meal chocolate bar cookie dragée brownie. Lollipop cotton candy cake bear claw oat cake. Dragée candy canes dessert tart. Marzipan dragée gummies lollipop jujubes chocolate bar candy canes. Icing gingerbread chupa chups cotton candy cookie sweet icing bonbon gummies. Gummies lollipop brownie biscuit danish chocolate cake. Danish powder cookie macaroon chocolate donut tart. Carrot cake dragée croissant lemon drops liquorice lemon drops cookie lollipop toffee. Carrot cake carrot cake liquorice sugar plum topping bonbon Meal muffin jujubes. Jelly pastry wafer tart caramels bear claw. Tiramisu tart Meal cake danish lemon drops. Brownie cupcake dragée gummies.",
                             Name = "Rhubarb Meal",
                             PreparationTime = 0,
@@ -308,6 +393,7 @@ namespace MealPlanner.Migrations
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypie.jpg",
                             IsMealOfTheWeek = false,
+                            ItemMealPlanId = 0,
                             LongDescription = "Icing carrot cake jelly-o cheesecake. Sweet roll marzipan marshmallow toffee brownie brownie candy tootsie roll. Chocolate cake gingerbread tootsie roll oat cake Meal chocolate bar cookie dragée brownie. Lollipop cotton candy cake bear claw oat cake. Dragée candy canes dessert tart. Marzipan dragée gummies lollipop jujubes chocolate bar candy canes. Icing gingerbread chupa chups cotton candy cookie sweet icing bonbon gummies. Gummies lollipop brownie biscuit danish chocolate cake. Danish powder cookie macaroon chocolate donut tart. Carrot cake dragée croissant lemon drops liquorice lemon drops cookie lollipop toffee. Carrot cake carrot cake liquorice sugar plum topping bonbon Meal muffin jujubes. Jelly pastry wafer tart caramels bear claw. Tiramisu tart Meal cake danish lemon drops. Brownie cupcake dragée gummies.",
                             Name = "Strawberry Meal",
                             PreparationTime = 0,
@@ -321,10 +407,25 @@ namespace MealPlanner.Migrations
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrycheesecakesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrycheesecake.jpg",
                             IsMealOfTheWeek = false,
+                            ItemMealPlanId = 0,
                             LongDescription = "Icing carrot cake jelly-o cheesecake. Sweet roll marzipan marshmallow toffee brownie brownie candy tootsie roll. Chocolate cake gingerbread tootsie roll oat cake Meal chocolate bar cookie dragée brownie. Lollipop cotton candy cake bear claw oat cake. Dragée candy canes dessert tart. Marzipan dragée gummies lollipop jujubes chocolate bar candy canes. Icing gingerbread chupa chups cotton candy cookie sweet icing bonbon gummies. Gummies lollipop brownie biscuit danish chocolate cake. Danish powder cookie macaroon chocolate donut tart. Carrot cake dragée croissant lemon drops liquorice lemon drops cookie lollipop toffee. Carrot cake carrot cake liquorice sugar plum topping bonbon Meal muffin jujubes. Jelly pastry wafer tart caramels bear claw. Tiramisu tart Meal cake danish lemon drops. Brownie cupcake dragée gummies.",
                             Name = "Strawberry Cheese Cake",
                             PreparationTime = 0,
                             ShortDescription = "You'll love it!"
+                        },
+                        new
+                        {
+                            MealId = 12,
+                            Calories = 220,
+                            CategoryId = 2,
+                            ImageThumbnailUrl = "~/images/cal.jpg",
+                            ImageUrl = "~/images/cal.jpg",
+                            IsMealOfTheWeek = true,
+                            ItemMealPlanId = 1,
+                            LongDescription = "1) Chop cauliflower in food processor or use pre-chopped cauliflower.2) Weigh out cauliflower and cook in microwave for 10 minutes.3) Weigh out soy sauce and put in frying pan on medium heat.4) Add hot, cooked cauliflower and simmer till dry.5) Add egg whites and cook till done.6) Weigh nuts and sprinkle on top.",
+                            Name = "Cauliflower Egg White Scramble ",
+                            PreparationTime = 20,
+                            ShortDescription = "Our famous egg scramble!"
                         });
                 });
 
@@ -387,8 +488,8 @@ namespace MealPlanner.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<int?>("MealPlanDetailsMealPlanDetailId")
-                        .HasColumnType("int");
+                    b.Property<string>("MealPlanId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -437,7 +538,7 @@ namespace MealPlanner.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MealPlanDetailsMealPlanDetailId");
+                    b.HasIndex("MealPlanId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -585,11 +686,13 @@ namespace MealPlanner.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MealPlanner.Models.Entities.MealPlanDetail", b =>
+            modelBuilder.Entity("MealPlanner.Data.Entities.IngredientDetail", b =>
                 {
-                    b.HasOne("MealPlanner.Models.MealPlan", "MealPlan")
-                        .WithMany()
-                        .HasForeignKey("MealPlanId");
+                    b.HasOne("MealPlanner.Models.Meal", "Meal")
+                        .WithMany("IngredientDetails")
+                        .HasForeignKey("MealId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MealPlanner.Models.Entities.MealPlanItem", b =>
@@ -605,9 +708,11 @@ namespace MealPlanner.Migrations
 
             modelBuilder.Entity("MealPlanner.Models.Ingredient", b =>
                 {
-                    b.HasOne("MealPlanner.Models.Meal", null)
-                        .WithMany("Ingredients")
-                        .HasForeignKey("MealId");
+                    b.HasOne("MealPlanner.Data.Entities.IngredientDetail", null)
+                        .WithOne("Ingredient")
+                        .HasForeignKey("MealPlanner.Models.Ingredient", "IngredientDetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MealPlanner.Models.Meal", b =>
@@ -621,9 +726,9 @@ namespace MealPlanner.Migrations
 
             modelBuilder.Entity("MealPlanner.Models.User", b =>
                 {
-                    b.HasOne("MealPlanner.Models.Entities.MealPlanDetail", "MealPlanDetails")
+                    b.HasOne("MealPlanner.Models.MealPlan", "MealPlan")
                         .WithMany()
-                        .HasForeignKey("MealPlanDetailsMealPlanDetailId");
+                        .HasForeignKey("MealPlanId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

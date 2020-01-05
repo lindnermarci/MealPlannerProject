@@ -1,22 +1,26 @@
-﻿namespace MealPlanner.Models
+﻿using MealPlanner.Data.Entities;
+
+namespace MealPlanner.Models
 {
     public class Ingredient
     {
-        public int Id { get; set; }
+        public int IngredientId { get; set; }
+        public int IngredientDetailId { get; set; }
         public string Name { get; set; }
+        public double Amount { get; set; }
         public double ProteinContent { get; set; }
         public double CarbohidrateContent { get; set; }
         public double FatContent { get; set; }
         public int Calories { get; set; }
 
-        public Ingredient(int id, string name, double proteinContent, double carbohidrateContent, double fatContent, int calories)
-        {
-            Id = id;
-            Name = name;
-            ProteinContent = proteinContent;
-            CarbohidrateContent = carbohidrateContent;
-            FatContent = fatContent;
-            Calories = calories;
-        }
+        //public Ingredient(int ingredientId, string name, double proteinContent, double carbohidrateContent, double fatContent, int calories)
+        //{
+        //    IngredientId = ingredientId;
+        //    Name = name;
+        //    ProteinContent = proteinContent;
+        //    CarbohidrateContent = carbohidrateContent;
+        //    FatContent = fatContent;
+        //    Calories = calories;
+        //}
     }
 }

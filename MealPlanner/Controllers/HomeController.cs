@@ -20,6 +20,7 @@ namespace MealPlanner.Controllers
 
         public IActionResult Index()
         {
+            mealRepository.AddMealIngredients();
             var homeViewModel = new HomeViewModel
             {
                 MealsOfTheWeek = mealRepository.MealsOfTheWeek

@@ -22,6 +22,10 @@ namespace MealPlanner.Data
 
         public DbSet<MealPlanItem> MealPlanItems { get; set; }
 
+        public DbSet<IngredientDetail> IngredientDetails { get; set; }
+
+        public DbSet<Ingredient> Ingredients { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -31,27 +35,26 @@ namespace MealPlanner.Data
             modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 2, CategoryName = "MainDishes" });
             modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 3, CategoryName = "Deserts" });
 
-            //seed Meals
-            Ingredient cal = new Ingredient(1, "califlower", 1.9, 5, 0.3, 24);
-            Ingredient nuts = new Ingredient(2, "nuts", 13, 18, 5, 440);
-            Ingredient soysauce = new Ingredient(3, "califlower", 4.8, 8, 0, 50);
-            Ingredient eggwhite = new Ingredient(4, "eggwhite", 11, 0, 0, 51);
+            ////seed Meals
+            //Ingredient cal = new Ingredient(1, "califlower", 1.9, 5, 0.3, 24);
+            //Ingredient nuts = new Ingredient(2, "nuts", 13, 18, 5, 440);
+            //Ingredient soysauce = new Ingredient(3, "califlower", 4.8, 8, 0, 50);
+            //Ingredient eggwhite = new Ingredient(4, "eggwhite", 11, 0, 0, 51);
 
-            modelBuilder.Entity<Ingredient>().HasData(cal);
-            modelBuilder.Entity<Ingredient>().HasData(nuts);
-            modelBuilder.Entity<Ingredient>().HasData(soysauce);
-            modelBuilder.Entity<Ingredient>().HasData(eggwhite);
+            //modelBuilder.Entity<Ingredient>().HasData(cal);
+            //modelBuilder.Entity<Ingredient>().HasData(nuts);
+            //modelBuilder.Entity<Ingredient>().HasData(soysauce);
+            //modelBuilder.Entity<Ingredient>().HasData(eggwhite);
 
-            var i1 = new IngredientDetail { Id = 1, Amount = 261, IngredientId = 1, MealId = 12 };
-            var i2 = new IngredientDetail { Id = 2, Amount = 62, IngredientId = 2, MealId = 12};
-            var i3 = new IngredientDetail { Id = 3, Amount = 23.7, IngredientId = 3, MealId = 12};
-            var i4 = new IngredientDetail { Id = 4, Amount = 9, IngredientId = 4, MealId = 12};
+            //var i1 = new IngredientDetail { Id = 1, Amount = 261, MealId = 12 };
+            //var i2 = new IngredientDetail { Id = 2, Amount = 62, MealId = 12 };
+            //var i3 = new IngredientDetail { Id = 3, Amount = 23.7, MealId = 12 };
+            //var i4 = new IngredientDetail { Id = 4, Amount = 9, MealId = 12 };
 
-            modelBuilder.Entity<IngredientDetail>().HasData(i1);
-            modelBuilder.Entity<IngredientDetail>().HasData(i2);
-            modelBuilder.Entity<IngredientDetail>().HasData(i3);
-            modelBuilder.Entity<IngredientDetail>().HasData(i4);
-
+            //modelBuilder.Entity<IngredientDetail>().HasData(i1);
+            //modelBuilder.Entity<IngredientDetail>().HasData(i2);
+            //modelBuilder.Entity<IngredientDetail>().HasData(i3);
+            //modelBuilder.Entity<IngredientDetail>().HasData(i4);
 
             //Ingredient cal = new Ingredient(5, "califlower", 1.9, 5, 0.3, 24);
             //Ingredient cal = new Ingredient(6, "califlower", 1.9, 5, 0.3, 24);
@@ -60,7 +63,7 @@ namespace MealPlanner.Data
             //Ingredient cal = new Ingredient(9, "califlower", 1.9, 5, 0.3, 24);
             //Ingredient cal = new Ingredient(10, "califlower", 1.9, 5, 0.3, 24);
 
-
+            //List<IngredientDetail> details = new List<IngredientDetail> { i1, i2, i3, i4 };
 
             modelBuilder.Entity<Meal>().HasData(new Meal
             {
@@ -220,20 +223,118 @@ namespace MealPlanner.Data
                 Calories = 498
             });
 
-            modelBuilder.Entity<Meal>().HasData(new Meal
+            modelBuilder.Entity<Meal>(m =>
             {
-                MealId = 12,
-                Name = "Cauliflower Egg White Scramble ",
-                ShortDescription = "Our famous egg scramble!",
-                LongDescription =
+                m.HasData(
+                    new
+                    {
+                        MealId = 12,
+                        Name = "Cauliflower Egg White Scramble ",
+                        ShortDescription = "Our famous egg scramble!",
+                        LongDescription =
         "1) Chop cauliflower in food processor or use pre-chopped cauliflower.2) Weigh out cauliflower and cook in microwave for 10 minutes.3) Weigh out soy sauce and put in frying pan on medium heat.4) Add hot, cooked cauliflower and simmer till dry.5) Add egg whites and cook till done.6) Weigh nuts and sprinkle on top.",
-                CategoryId = 2,
-                ImageUrl = "~/images/cal.jpg",
-                IsMealOfTheWeek = true,
-                ImageThumbnailUrl = "~/images/cal.jpg",
-                Calories = 220
+                        CategoryId = 2,
+                        ImageUrl = "~/images/cal.jpg",
+                        IsMealOfTheWeek = true,
+                        ImageThumbnailUrl = "~/images/cal.jpg",
+                        ItemMealPlanId = 1,
+                        Calories = 220,
+                        PreparationTime = 20
+                    });
+
+               
             });
 
+
+
+            
+
+            modelBuilder.Entity<IngredientDetail>()
+            .HasData(new
+            {
+                Id = 1,
+                Amount = 261.0,
+                MealId = 12,
+                IngredientId = 2
+            },new
+            {
+                Id = 2,
+                Amount = 261.0,
+                MealId = 12,
+                IngredientId = 3
+            }, new {
+                Id = 3,
+                Amount = 261.0,
+                MealId = 12,
+                IngredientId = 4
+            }, new
+            {
+                Id = 4,
+                Amount = 261.0,
+                MealId = 12,
+                IngredientId = 4
+            }, new
+            {
+                Id = 5,
+                Amount = 261.0,
+                MealId = 11,
+                IngredientId = 4
+
+            });
+
+            modelBuilder.Entity<Ingredient>()
+               .HasData(new Ingredient
+               {
+                   IngredientId = 1,
+                   Name = "califlower",
+                   Amount = 3.4,
+                   ProteinContent = 4.0,
+                   IngredientDetailId = 1,
+                   CarbohidrateContent = 0.3,
+                   FatContent = 1.0,
+                   Calories = 24,
+               });
+
+            modelBuilder.Entity<Ingredient>()
+               .HasData(new Ingredient
+               {
+                   IngredientId = 2,
+                   Name = "nuts",
+                   Amount = 1.9,
+                   ProteinContent = 5.0,
+                   IngredientDetailId = 2,
+                   CarbohidrateContent = 0.3,
+                   FatContent = 4.0,
+                   Calories = 24,
+               });
+
+            modelBuilder.Entity<Ingredient>()
+               .HasData(new Ingredient
+               {
+                   IngredientId = 3,
+                   Name = "soy sauce",
+                   Amount = 1.9,
+                   ProteinContent = 5.0,
+                   IngredientDetailId = 3,
+                   CarbohidrateContent = 1.3,
+                   FatContent = 1.0,
+                   Calories = 24,
+               });
+
+            modelBuilder.Entity<Ingredient>()
+               .HasData( new Ingredient
+               {
+                   IngredientId = 4,
+                   Name = "egg white",
+                   Amount = 1.9,
+                   ProteinContent = 5.0,
+                   IngredientDetailId = 4,
+                   CarbohidrateContent = 0.3,
+                   FatContent = 1.0,
+                   Calories = 24,
+               });
+
+            
         }
 
     }

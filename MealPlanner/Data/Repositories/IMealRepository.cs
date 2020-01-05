@@ -12,5 +12,7 @@ namespace MealPlanner.Models.Repositories
         IEnumerable<Meal> MealsOfTheWeek { get; }
 
         Meal GetMealById(int MealId);
+
+        void AddMealIngredients();
     }
 }

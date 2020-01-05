@@ -13,7 +13,7 @@
         <h3>@Model.LongDescription</h3>
         <div class="addToPlan">
             <div class="addToPlan">
-                <form method="get" action="/MealPlan/AddToMealPlan">
+                <form method="get" asp-controller="MealPlan" asp-action="AddToMealPlan">
                     <select id="Day" name="day">
                         <option value="1">Monday</option>
                         <option value="2">Tuesday</option>
@@ -29,5 +29,46 @@
 
             </div>
         </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Protein</th>
+                    <th>Carbs</th>
+                    <th>Fat</th>
+                    <th class="text-right">Calories</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int sum = 0;}
+                @foreach (var line in Model.IngredientDetails)
+                {
+                    @if (@line.Ingredient.Name != null)
+                    {
+                        <tr>
+                            <td class="text-center">@line.Ingredient.Name</td>
+                            <td class="text-center">@line.Amount g</td>
+                            <td class="text-left">@line.Ingredient.ProteinContent</td>
+                            <td class="text-left">@line.Ingredient.CarbohidrateContent</td>
+                            <td class="text-left">@line.Ingredient.FatContent</td>
+                            <td class="text-right">@line.Ingredient.Calories</td>
+                            @{ sum += @line.Ingredient.Calories;}
+                        </tr>
+                    }
+
+                }
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total calories:</td>
+                    <td class="text-right">
+                        @sum  g
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 </div>
