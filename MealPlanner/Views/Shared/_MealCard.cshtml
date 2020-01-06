@@ -7,8 +7,7 @@
             <h3>
                 <a asp-controller="Meal" asp-action="Details" asp-route-id="@Model.MealId">@Model.Name</a>
             </h3>
-            <p>@Model.ShortDescription</p>
-            <p>@Model.Calories.ToString()kcal</p>
+            <p>@Model.ShortDescription  @Model.Calories.ToString()kcal</p>
         </div>
         <div class="addToPlan">
             <form method="get" asp-controller="MealPlan" asp-action="AddToMealPlan">

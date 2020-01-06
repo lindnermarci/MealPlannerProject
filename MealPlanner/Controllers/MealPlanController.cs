@@ -21,6 +21,8 @@ namespace MealPlanner.Controllers
         private readonly MealPlan mealPlan;
         private readonly IPersonRepository personRepository;
         private readonly UserManager<User> userManager;
+        private bool personalised;
+
 
         public MealPlanController(IMealRepository mealRepository, MealPlan mealPlan, IPersonRepository personRepository, UserManager<User> userManager)
         {
@@ -31,20 +33,29 @@ namespace MealPlanner.Controllers
         }
         public ViewResult Index()
         {
-            var items = mealPlan.GetMealPlanItems();
-
-            mealPlan.MealPlanItems = items;
-
-            ClaimsPrincipal currentUser = this.User;
             var id = userManager.GetUserId(User); // Get user id:
             var user = personRepository.getUser(id);
+            var totalCalories = personRepository.getUserDailyCalories(id);
+            if (!personalised)
+            {
+                mealRepository.AddPersonalMeals(mealPlan,  totalCalories);
+                personalised = true;
+            }
+
+            var items = mealPlan.GetMealPlanItems();
+
+            
+
+            mealPlan.MealPlanItems = items;
+            ClaimsPrincipal currentUser = this.User;
 
             var TDEE = personRepository.calculateUserTDEE(id);
-            var totalCalories = personRepository.getUserDailyCalories(id);
             List<int> macros = personRepository.calculateMacros(id);
             int proteinPercent = (int)Math.Round((double)macros.ElementAt(0) * 4 / totalCalories * 100);
             int fatPercent = (int)Math.Round((double)macros.ElementAt(1) * 9 / totalCalories * 100);
             int carbsPercent = (int)Math.Round((double)macros.ElementAt(2) * 4 / totalCalories * 100);
+
+
             var mealPlanViewModel = new MealPlanViewModel()
             {
                 MealPlan = mealPlan,
@@ -59,7 +70,7 @@ namespace MealPlanner.Controllers
                 FatPercent = fatPercent
             };
             mealPlanViewModel.MealPlan.MealPlanItems.OrderBy(x => x.DayOfWeek);
-        return View(mealPlanViewModel);
+            return View(mealPlanViewModel);
         }
 
         public RedirectToActionResult AddToMealPlan(int day, int mealId)

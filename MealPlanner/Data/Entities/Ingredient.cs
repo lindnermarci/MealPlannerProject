@@ -11,7 +11,13 @@ namespace MealPlanner.Models
         public double ProteinContent { get; set; }
         public double CarbohidrateContent { get; set; }
         public double FatContent { get; set; }
-        public int Calories { get; set; }
+        public int Calories
+        {
+            get
+            {
+                return (int)((CarbohidrateContent + ProteinContent) * 4 + FatContent * 9);
+            }
+        }
 
         //public Ingredient(int ingredientId, string name, double proteinContent, double carbohidrateContent, double fatContent, int calories)
         //{

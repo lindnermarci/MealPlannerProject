@@ -38,11 +38,13 @@
                     <th>Carbs</th>
                     <th>Fat</th>
                     <th class="text-right">Calories</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                @{int sum = 0;}
+                @{double sumkcal = 0;}
+                @{double sumProt = 0;}
+                @{double sumCarb = 0;}
+                @{double sumFat = 0;}
                 @foreach (var line in Model.IngredientDetails)
                 {
                     @if (@line.Ingredient.Name != null)
@@ -50,11 +52,14 @@
                         <tr>
                             <td class="text-center">@line.Ingredient.Name</td>
                             <td class="text-center">@line.Amount g</td>
-                            <td class="text-left">@line.Ingredient.ProteinContent</td>
-                            <td class="text-left">@line.Ingredient.CarbohidrateContent</td>
-                            <td class="text-left">@line.Ingredient.FatContent</td>
-                            <td class="text-right">@line.Ingredient.Calories</td>
-                            @{ sum += @line.Ingredient.Calories;}
+                            <td class="text-left">@line.ProteinContent g</td>
+                            <td class="text-left">@line.CarbohidrateContent g</td>
+                            <td class="text-left">@line.FatContent g</td>
+                            <td class="text-right">@line.Calories kcal</td>
+                            @{ sumkcal += @line.Calories;}
+                            @{ sumProt += @line.ProteinContent;}
+                            @{ sumCarb += @line.CarbohidrateContent;}
+                            @{ sumFat += @line.FatContent;}
                         </tr>
                     }
 
@@ -63,10 +68,11 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3" class="text-right">Total calories:</td>
-                    <td class="text-right">
-                        @sum  g
-                    </td>
+                    <td colspan="2" class="text-lg-center font-weight-bold">Total: </td>
+                    <td> @Math.Round(sumProt, 2)  g</td>
+                    <td> @Math.Round(sumCarb, 2)  g</td>
+                    <td> @Math.Round(sumFat, 2)  g</td>
+                    <td class="text-right"> @Math.Round(sumkcal, 2)  kcal</td>
                 </tr>
             </tfoot>
         </table>

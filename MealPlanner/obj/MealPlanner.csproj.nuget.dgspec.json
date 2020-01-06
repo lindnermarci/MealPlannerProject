@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\documents\\2019-20-01\\projektmunka\\MealPlanner3\\MealPlannerProject\\MealPlanner\\MealPlanner.csproj": {}
+    "F:\\documents\\MealPlanner2\\MealPlannerProject\\MealPlanner\\MealPlanner.csproj": {}
   },
   "projects": {
-    "F:\\documents\\2019-20-01\\projektmunka\\MealPlanner3\\MealPlannerProject\\MealPlanner\\MealPlanner.csproj": {
+    "F:\\documents\\MealPlanner2\\MealPlannerProject\\MealPlanner\\MealPlanner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\documents\\2019-20-01\\projektmunka\\MealPlanner3\\MealPlannerProject\\MealPlanner\\MealPlanner.csproj",
+        "projectUniqueName": "F:\\documents\\MealPlanner2\\MealPlannerProject\\MealPlanner\\MealPlanner.csproj",
         "projectName": "MealPlanner",
-        "projectPath": "F:\\documents\\2019-20-01\\projektmunka\\MealPlanner3\\MealPlannerProject\\MealPlanner\\MealPlanner.csproj",
+        "projectPath": "F:\\documents\\MealPlanner2\\MealPlannerProject\\MealPlanner\\MealPlanner.csproj",
         "packagesPath": "C:\\Users\\Marci\\.nuget\\packages\\",
-        "outputPath": "F:\\documents\\2019-20-01\\projektmunka\\MealPlanner3\\MealPlannerProject\\MealPlanner\\obj\\",
+        "outputPath": "F:\\documents\\MealPlanner2\\MealPlannerProject\\MealPlanner\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

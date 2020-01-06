@@ -39,6 +39,7 @@ body {
     padding-left: 10px;
 }
 
+
 .thumbnail {
     padding: 0;
 }
@@ -77,4 +78,14 @@ footer {
     top: 0;
     left: 0;
     min-height: 400px;
+}
+
+#myProgress {
+    width: 100%;
+    background-color: white;
+}
+
+#myBar {
+    height: 10px;
+    background-color: forestgreen;
 }

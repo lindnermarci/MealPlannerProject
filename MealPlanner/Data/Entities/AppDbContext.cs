@@ -76,7 +76,6 @@ namespace MealPlanner.Data
                 ImageUrl = "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2019/04/sausage-casserole.jpg?itok=kWEQd0OP",
                 IsMealOfTheWeek = true,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/applepiesmall.jpg",
-                Calories = 980
             });
 
             modelBuilder.Entity<Meal>().HasData(new Meal
@@ -91,7 +90,6 @@ namespace MealPlanner.Data
                 IsMealOfTheWeek = false,
                 ImageThumbnailUrl =
                     "https://gillcleerenpluralsight.blob.core.windows.net/files/blueberrycheesecakesmall.jpg",
-                Calories = 910
             });
 
             modelBuilder.Entity<Meal>().HasData(new Meal
@@ -105,7 +103,6 @@ namespace MealPlanner.Data
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cheesecake.jpg",
                 IsMealOfTheWeek = false,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cheesecakesmall.jpg",
-                Calories = 920
             });
 
             modelBuilder.Entity<Meal>().HasData(new Meal
@@ -119,7 +116,6 @@ namespace MealPlanner.Data
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cherrypie.jpg",
                 IsMealOfTheWeek = false,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cherrypiesmall.jpg",
-                Calories = 913
             });
 
             modelBuilder.Entity<Meal>().HasData(new Meal
@@ -134,7 +130,6 @@ namespace MealPlanner.Data
                 IsMealOfTheWeek = false,
                 ImageThumbnailUrl =
                     "https://gillcleerenpluralsight.blob.core.windows.net/files/christmasapplepiesmall.jpg",
-                Calories = 800
             });
 
             modelBuilder.Entity<Meal>().HasData(new Meal
@@ -148,7 +143,6 @@ namespace MealPlanner.Data
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/peachpie.jpg",
                 IsMealOfTheWeek = false,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/peachpiesmall.jpg",
-                Calories = 897
             });
 
             modelBuilder.Entity<Meal>().HasData(new Meal
@@ -162,7 +156,6 @@ namespace MealPlanner.Data
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/pumpkinpie.jpg",
                 IsMealOfTheWeek = false,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/pumpkinpiesmall.jpg",
-                Calories = 678
             });
 
             modelBuilder.Entity<Meal>().HasData(new Meal
@@ -176,7 +169,6 @@ namespace MealPlanner.Data
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypie.jpg",
                 IsMealOfTheWeek = true,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypiesmall.jpg",
-                Calories = 545
             });
 
 
@@ -191,7 +183,6 @@ namespace MealPlanner.Data
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/rhubarbpie.jpg",
                 IsMealOfTheWeek = true,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/rhubarbpiesmall.jpg",
-                Calories = 876
             });
 
             modelBuilder.Entity<Meal>().HasData(new Meal
@@ -205,7 +196,6 @@ namespace MealPlanner.Data
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypie.jpg",
                 IsMealOfTheWeek = false,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypiesmall.jpg",
-                Calories = 456
             });
 
             modelBuilder.Entity<Meal>().HasData(new Meal
@@ -220,7 +210,6 @@ namespace MealPlanner.Data
                 IsMealOfTheWeek = false,
                 ImageThumbnailUrl =
                     "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrycheesecakesmall.jpg",
-                Calories = 498
             });
 
             modelBuilder.Entity<Meal>(m =>
@@ -292,7 +281,6 @@ namespace MealPlanner.Data
                    IngredientDetailId = 1,
                    CarbohidrateContent = 0.3,
                    FatContent = 1.0,
-                   Calories = 24,
                });
 
             modelBuilder.Entity<Ingredient>()
@@ -305,7 +293,6 @@ namespace MealPlanner.Data
                    IngredientDetailId = 2,
                    CarbohidrateContent = 0.3,
                    FatContent = 4.0,
-                   Calories = 24,
                });
 
             modelBuilder.Entity<Ingredient>()
@@ -318,7 +305,6 @@ namespace MealPlanner.Data
                    IngredientDetailId = 3,
                    CarbohidrateContent = 1.3,
                    FatContent = 1.0,
-                   Calories = 24,
                });
 
             modelBuilder.Entity<Ingredient>()
@@ -331,7 +317,6 @@ namespace MealPlanner.Data
                    IngredientDetailId = 4,
                    CarbohidrateContent = 0.3,
                    FatContent = 1.0,
-                   Calories = 24,
                });
 
             

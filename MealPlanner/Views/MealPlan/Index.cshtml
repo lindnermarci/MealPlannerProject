@@ -4,18 +4,18 @@
 
 
 <div>
-    <table class="table table-striped table-bordered table-dark">
+    <table class="table">
         <tbody>
             <tr>
                 <td>Metabolic Data</td>
                 <td colspan="2">TDEE: @Model.TDEE kcal </td>
             </tr>
             <tr>
-                <td>This Meal Plan</td>
+                <td>Daily calorie goal:</td>
                 <td colspan="2">@Model.DailyCalorieAmount kcal</td>
             </tr>
             <tr>
-                <td>Macros</td>
+                <td>Your Ideal Macros:</td>
                 <td colspan="2">Pro:@Model.ProteinAmount g&nbsp;&nbsp;Carb::@Model.CarbsAmount g&nbsp;&nbsp;Fat: @Model.FatAmount g</td>
 
             </tr>
@@ -37,6 +37,9 @@
             <tr>
                 <th>Selected amount</th>
                 <th>Meal</th>
+                <th>Protein</th>
+                <th>Fat</th>
+                <th>Carbs</th>
                 <th class="text-right">Subtotal</th>
                 <th></th>
             </tr>
@@ -45,34 +48,49 @@
             @foreach (var line in Model.MealPlan.MealPlanItems.Where(x => x.DayOfWeek == (DayOfWeek)i))
             {
 
-                <tr>
-                    <td class="text-center">@line.Amount</td>
-                    <td class="text-left">@line.Meal.Name</td>
-                    <td class="text-right">
-                        @((line.Amount * line.Meal.Calories).ToString())
-                    </td>
-                    <td>
-                        <div class="addToPlan">
-                            <p class="button">
-                                <a class="btn btn-primary"
-                                   asp-controller="MealPlan"
-                                   asp-action="RemoveFromMealPlan"
-                                   asp-route-dayOfWeek="@line.DayOfWeek"
-                                   asp-route-mealId="@line.Meal.MealId">Remove from plan</a>
-                            </p>
-                        </div>
-                    </td>
-                </tr>
+            <tr>
+                <td class="text-center">@line.Amount</td>
+                <td class="text-left"> <a asp-controller="Meal" asp-action="Details" asp-route-id="@line.Meal.MealId">@line.Meal.Name</a></td>
+                <td>@line.Meal.FatContent</td>
+                <td> g</td>
+                <td> g</td>
+
+                <td class="text-right">
+                    @((line.Amount * line.Meal.Calories)) kcal
+                </td>
+                <td>
+                    <div class="addToPlan">
+                        <p class="button">
+                            <a class="btn btn-primary"
+                               asp-controller="MealPlan"
+                               asp-action="RemoveFromMealPlan"
+                               asp-route-dayOfWeek="@line.DayOfWeek"
+                               asp-route-mealId="@line.Meal.MealId">Remove from plan</a>
+                        </p>
+                    </div>
+                </td>
+            </tr>
+
+
             }
 
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3" class="text-right">Total calories:</td>
+                <td>Used calories:</td>
+                <td colspan="3">
+                    <div id="myProgress">
+                        <div style="width:@Math.Round((Model.TotalCalories.ElementAt(i)/(decimal)Model.DailyCalorieAmount * 100))%;" id="myBar"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-right">Total calories:</td>
                 <td class="text-right">
                     @Model.TotalCalories.ElementAt(i).ToString()
                 </td>
             </tr>
+
         </tfoot>
     </table>
 

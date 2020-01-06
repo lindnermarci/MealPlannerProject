@@ -103,10 +103,19 @@ namespace MealPlanner.Models
 
         public List<MealPlanItem> GetMealPlanItems()
         {
-            return MealPlanItems ?? (MealPlanItems =
+           MealPlanItems =
                        appDbContext.MealPlanItems.Where(c => c.MealplanIdentifier == MealPlanId)
                            .Include(s => s.Meal)
-                           .ToList());
+                           .Include(s => s.Meal.IngredientDetails)
+                           .ToList();
+            return MealPlanItems;
+            //foreach (var item in MealPlanItems)
+            //{
+            //    if(item.Meal.IngredientDetails == null)
+            //    {
+            //        item.Meal.IngredientDetails = 
+            //    }
+            //}
         }
 
         public void ClearMealPlan()
@@ -156,6 +165,23 @@ namespace MealPlanner.Models
                 }
             }
             return calories.ToList();
+        }
+        public int TotalCalories
+        {
+            get
+            {
+                int szum = 0;
+                var mealPlanItems = GetMealPlanItems();
+                if (mealPlanItems != null)
+                {
+                    foreach (var item in mealPlanItems)
+                    {
+                        szum += item.Meal.Calories;
+                    }
+                    return szum;
+                }
+                return 0;
+            }
         }
     }
 }
