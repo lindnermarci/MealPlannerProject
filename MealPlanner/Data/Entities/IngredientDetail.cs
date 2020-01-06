@@ -9,8 +9,7 @@ namespace MealPlanner.Data.Entities
 {
     public class IngredientDetail
     {
-        public static object Sum { get; internal set; }
-        public int Id { get; set; }
+        public int IngredientDetailId { get; set; }
         public Ingredient Ingredient { get; set; }
         public Meal Meal { get; set; }
         public int MealId { get; set; }

@@ -51,9 +51,9 @@
             <tr>
                 <td class="text-center">@line.Amount</td>
                 <td class="text-left"> <a asp-controller="Meal" asp-action="Details" asp-route-id="@line.Meal.MealId">@line.Meal.Name</a></td>
-                <td>@line.Meal.FatContent</td>
-                <td> g</td>
-                <td> g</td>
+                <td>@line.Meal.ProteinContent</td>
+                <td>@line.Meal.FatContent g</td>
+                <td>@line.Meal.CarbohidrateContent g</td>
 
                 <td class="text-right">
                     @((line.Amount * line.Meal.Calories)) kcal

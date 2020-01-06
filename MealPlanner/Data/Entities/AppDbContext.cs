@@ -236,49 +236,12 @@ namespace MealPlanner.Data
 
 
 
-            
-
-            modelBuilder.Entity<IngredientDetail>()
-            .HasData(new
-            {
-                Id = 1,
-                Amount = 261.0,
-                MealId = 12,
-                IngredientId = 2
-            },new
-            {
-                Id = 2,
-                Amount = 261.0,
-                MealId = 12,
-                IngredientId = 3
-            }, new {
-                Id = 3,
-                Amount = 261.0,
-                MealId = 12,
-                IngredientId = 4
-            }, new
-            {
-                Id = 4,
-                Amount = 261.0,
-                MealId = 12,
-                IngredientId = 4
-            }, new
-            {
-                Id = 5,
-                Amount = 261.0,
-                MealId = 11,
-                IngredientId = 4
-
-            });
-
             modelBuilder.Entity<Ingredient>()
                .HasData(new Ingredient
                {
                    IngredientId = 1,
                    Name = "califlower",
-                   Amount = 3.4,
                    ProteinContent = 4.0,
-                   IngredientDetailId = 1,
                    CarbohidrateContent = 0.3,
                    FatContent = 1.0,
                });
@@ -288,9 +251,7 @@ namespace MealPlanner.Data
                {
                    IngredientId = 2,
                    Name = "nuts",
-                   Amount = 1.9,
                    ProteinContent = 5.0,
-                   IngredientDetailId = 2,
                    CarbohidrateContent = 0.3,
                    FatContent = 4.0,
                });
@@ -300,9 +261,7 @@ namespace MealPlanner.Data
                {
                    IngredientId = 3,
                    Name = "soy sauce",
-                   Amount = 1.9,
                    ProteinContent = 5.0,
-                   IngredientDetailId = 3,
                    CarbohidrateContent = 1.3,
                    FatContent = 1.0,
                });
@@ -312,14 +271,44 @@ namespace MealPlanner.Data
                {
                    IngredientId = 4,
                    Name = "egg white",
-                   Amount = 1.9,
                    ProteinContent = 5.0,
-                   IngredientDetailId = 4,
                    CarbohidrateContent = 0.3,
                    FatContent = 1.0,
                });
 
-            
+            modelBuilder.Entity<IngredientDetail>()
+           .HasData(new
+           {
+               IngredientDetailId = 1,
+               Amount = 122.0,
+               MealId = 12,
+               IngredientId = 2
+           }, new
+           {
+               IngredientDetailId = 2,
+               Amount = 210.0,
+               MealId = 12,
+               IngredientId = 3
+           }, new
+           {
+               IngredientDetailId = 3,
+               Amount = 261.0,
+               MealId = 12,
+               IngredientId = 4
+           }, new
+           {
+               IngredientDetailId = 4,
+               Amount = 146.0,
+               MealId = 12,
+               IngredientId = 1
+           }, new
+           {
+               IngredientDetailId = 5,
+               Amount = 189.0,
+               MealId = 11,
+               IngredientId = 4
+
+           });
         }
 
     }

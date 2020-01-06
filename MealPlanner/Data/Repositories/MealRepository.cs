@@ -22,7 +22,7 @@ namespace MealPlanner.Models.Repositories
         {
             get
             {
-                return appDbContext.Meals.Include(meal => meal.Category);
+                return appDbContext.Meals.Include(meal => meal.Category).Include(x => x.IngredientDetails).ThenInclude(x => x.Ingredient);
             }
         }
 
@@ -43,7 +43,7 @@ namespace MealPlanner.Models.Repositories
                 for (int i = 0; i < 7; i++)
                 {
                     var szum = 0;
-                    IList<Meal> meals = appDbContext.Meals.Cast<Meal>().AsParallel().Where(x => x.MealId > i).ToList();
+                    IList<Meal> meals = appDbContext.Meals.Include(x => x.IngredientDetails).ThenInclude(x => x.Ingredient).Cast<Meal>().Where(x => x.MealId > i).ToList();
                     foreach (var item in meals)
                     {
                         if (szum + 200 < calories)
@@ -115,8 +115,8 @@ namespace MealPlanner.Models.Repositories
                 List<Ingredient> ingredients = appDbContext.Ingredients.Cast<Ingredient>().ToList();
                 if (ingredientDetail.Ingredient == null)
                 {
-                    Ingredient ing = ingredients.SingleOrDefault(ing => ing.IngredientId == (ingredientDetail.Id % 4 + 1));
-                    ingredientDetail.Ingredient = ing;
+                   // Ingredient ing = ingredients.SingleOrDefault(ing => ing.IngredientId == (ingredientDetail.IngredientId % 4 + 1));
+                   // ingredientDetail.Ingredient = ing;
                 }
             }
             return ingredientDetails;
@@ -141,8 +141,8 @@ namespace MealPlanner.Models.Repositories
                         List<Ingredient> ingredients = appDbContext.Ingredients.Cast<Ingredient>().ToList();
                         if (ingredientDetail.Ingredient == null)
                         {
-                            Ingredient ing = ingredients.SingleOrDefault(ing => ing.IngredientId == (ingredientDetail.Id % 4 + 1));
-                            ingredientDetail.Ingredient = ing;
+                            //Ingredient ing = ingredients.SingleOrDefault(ing => ing.IngredientId == (ingredientDetail.IngredientId % 4 + 1));
+                            //ingredientDetail.Ingredient = ing;
                         }
                     }
                 }

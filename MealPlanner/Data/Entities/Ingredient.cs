@@ -5,9 +5,7 @@ namespace MealPlanner.Models
     public class Ingredient
     {
         public int IngredientId { get; set; }
-        public int IngredientDetailId { get; set; }
         public string Name { get; set; }
-        public double Amount { get; set; }
         public double ProteinContent { get; set; }
         public double CarbohidrateContent { get; set; }
         public double FatContent { get; set; }

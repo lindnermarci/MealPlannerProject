@@ -23,6 +23,12 @@
     <Compile Remove="Migrations\20200104215852_MralPlanItemId.Designer.cs" />
     <Compile Remove="Migrations\20200104220159_MealPlanItem.cs" />
     <Compile Remove="Migrations\20200104220159_MealPlanItem.Designer.cs" />
+    <Compile Remove="Migrations\20200106203303_Initial.cs" />
+    <Compile Remove="Migrations\20200106203303_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20200106203920_Intital.cs" />
+    <Compile Remove="Migrations\20200106203920_Intital.Designer.cs" />
+    <Compile Remove="Migrations\20200106204745_Initial.cs" />
+    <Compile Remove="Migrations\20200106204745_Initial.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

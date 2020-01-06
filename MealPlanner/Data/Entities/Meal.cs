@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MealPlanner.Data;
 using MealPlanner.Data.Entities;
@@ -20,27 +21,38 @@ namespace MealPlanner.Models
         public string ImageThumbnailUrl { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
-        public int Calories { get; set; }
-
-        public int FatContent { 
+        public int Calories
+        {
             get
             {
-                return (int)IngredientDetails.Sum(x => x.FatContent);
+                return (int)((CarbohidrateContent + ProteinContent) * 4 + FatContent * 9);
             }
         }
 
-        public int CarbohidrateContent {
+        public double FatContent
+        {
             get
             {
-                double szum = 0;
-                foreach (var item in IngredientDetails)
-                {
-                    szum += item.Ingredient.CarbohidrateContent;
-                }
-                return (int)szum;
+                return Math.Round(IngredientDetails.Sum(x => x.FatContent), 2);
             }
-         }
+        }
 
+        public double CarbohidrateContent
+        {
+            get
+            {
+                return Math.Round(IngredientDetails.Sum(x => x.CarbohidrateContent), 2);
 
+            }
+        }
+
+        public double ProteinContent
+        {
+            get
+            {
+                return Math.Round(IngredientDetails.Sum(x =>  x.ProteinContent), 2);
+
+            }
+        }
     }
 }

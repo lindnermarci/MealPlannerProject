@@ -21,7 +21,7 @@ namespace MealPlanner.Migrations
 
             modelBuilder.Entity("MealPlanner.Data.Entities.IngredientDetail", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IngredientDetailId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -29,10 +29,15 @@ namespace MealPlanner.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
+                    b.Property<int?>("IngredientId")
+                        .HasColumnType("int");
+
                     b.Property<int>("MealId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("IngredientDetailId");
+
+                    b.HasIndex("IngredientId");
 
                     b.HasIndex("MealId");
 
@@ -41,32 +46,37 @@ namespace MealPlanner.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            Amount = 261.0,
+                            IngredientDetailId = 1,
+                            Amount = 122.0,
+                            IngredientId = 2,
                             MealId = 12
                         },
                         new
                         {
-                            Id = 2,
-                            Amount = 261.0,
+                            IngredientDetailId = 2,
+                            Amount = 210.0,
+                            IngredientId = 3,
                             MealId = 12
                         },
                         new
                         {
-                            Id = 3,
+                            IngredientDetailId = 3,
                             Amount = 261.0,
+                            IngredientId = 4,
                             MealId = 12
                         },
                         new
                         {
-                            Id = 4,
-                            Amount = 261.0,
+                            IngredientDetailId = 4,
+                            Amount = 146.0,
+                            IngredientId = 1,
                             MealId = 12
                         },
                         new
                         {
-                            Id = 5,
-                            Amount = 261.0,
+                            IngredientDetailId = 5,
+                            Amount = 189.0,
+                            IngredientId = 4,
                             MealId = 11
                         });
                 });
@@ -144,20 +154,11 @@ namespace MealPlanner.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Amount")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Calories")
-                        .HasColumnType("int");
-
                     b.Property<double>("CarbohidrateContent")
                         .HasColumnType("float");
 
                     b.Property<double>("FatContent")
                         .HasColumnType("float");
-
-                    b.Property<int>("IngredientDetailId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -167,53 +168,38 @@ namespace MealPlanner.Migrations
 
                     b.HasKey("IngredientId");
 
-                    b.HasIndex("IngredientDetailId")
-                        .IsUnique();
-
                     b.ToTable("Ingredients");
 
                     b.HasData(
                         new
                         {
                             IngredientId = 1,
-                            Amount = 3.3999999999999999,
-                            Calories = 24,
                             CarbohidrateContent = 0.29999999999999999,
                             FatContent = 1.0,
-                            IngredientDetailId = 1,
                             Name = "califlower",
                             ProteinContent = 4.0
                         },
                         new
                         {
                             IngredientId = 2,
-                            Amount = 1.8999999999999999,
-                            Calories = 24,
                             CarbohidrateContent = 0.29999999999999999,
                             FatContent = 4.0,
-                            IngredientDetailId = 2,
                             Name = "nuts",
                             ProteinContent = 5.0
                         },
                         new
                         {
                             IngredientId = 3,
-                            Amount = 1.8999999999999999,
-                            Calories = 24,
                             CarbohidrateContent = 1.3,
                             FatContent = 1.0,
-                            IngredientDetailId = 3,
                             Name = "soy sauce",
                             ProteinContent = 5.0
                         },
                         new
                         {
                             IngredientId = 4,
-                            Amount = 1.8999999999999999,
-                            Calories = 24,
                             CarbohidrateContent = 0.29999999999999999,
                             FatContent = 1.0,
-                            IngredientDetailId = 4,
                             Name = "egg white",
                             ProteinContent = 5.0
                         });
@@ -266,7 +252,7 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 1,
-                            Calories = 980,
+                            Calories = 0,
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/applepiesmall.jpg",
                             ImageUrl = "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2019/04/sausage-casserole.jpg?itok=kWEQd0OP",
@@ -280,7 +266,7 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 2,
-                            Calories = 910,
+                            Calories = 0,
                             CategoryId = 3,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/blueberrycheesecakesmall.jpg",
                             ImageUrl = "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/06/gfkids_onepanvegeggs.jpg?itok=XbNYQTmJ",
@@ -294,7 +280,7 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 3,
-                            Calories = 920,
+                            Calories = 0,
                             CategoryId = 3,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cheesecakesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cheesecake.jpg",
@@ -308,7 +294,7 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 4,
-                            Calories = 913,
+                            Calories = 0,
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cherrypiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cherrypie.jpg",
@@ -322,7 +308,7 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 5,
-                            Calories = 800,
+                            Calories = 0,
                             CategoryId = 2,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/christmasapplepiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/christmasapplepie.jpg",
@@ -336,7 +322,7 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 6,
-                            Calories = 897,
+                            Calories = 0,
                             CategoryId = 2,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/peachpiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/peachpie.jpg",
@@ -350,7 +336,7 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 7,
-                            Calories = 678,
+                            Calories = 0,
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/pumpkinpiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/pumpkinpie.jpg",
@@ -364,7 +350,7 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 8,
-                            Calories = 545,
+                            Calories = 0,
                             CategoryId = 2,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypie.jpg",
@@ -378,7 +364,7 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 9,
-                            Calories = 876,
+                            Calories = 0,
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/rhubarbpiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/rhubarbpie.jpg",
@@ -392,7 +378,7 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 10,
-                            Calories = 456,
+                            Calories = 0,
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypie.jpg",
@@ -406,7 +392,7 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 11,
-                            Calories = 498,
+                            Calories = 0,
                             CategoryId = 3,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrycheesecakesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrycheesecake.jpg",
@@ -692,6 +678,10 @@ namespace MealPlanner.Migrations
 
             modelBuilder.Entity("MealPlanner.Data.Entities.IngredientDetail", b =>
                 {
+                    b.HasOne("MealPlanner.Models.Ingredient", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId");
+
                     b.HasOne("MealPlanner.Models.Meal", "Meal")
                         .WithMany("IngredientDetails")
                         .HasForeignKey("MealId")
@@ -708,15 +698,6 @@ namespace MealPlanner.Migrations
                     b.HasOne("MealPlanner.Models.MealPlan", null)
                         .WithMany("MealPlanItems")
                         .HasForeignKey("MealPlanId");
-                });
-
-            modelBuilder.Entity("MealPlanner.Models.Ingredient", b =>
-                {
-                    b.HasOne("MealPlanner.Data.Entities.IngredientDetail", null)
-                        .WithOne("Ingredient")
-                        .HasForeignKey("MealPlanner.Models.Ingredient", "IngredientDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("MealPlanner.Models.Meal", b =>

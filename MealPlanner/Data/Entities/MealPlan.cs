@@ -93,7 +93,15 @@ namespace MealPlanner.Models
 
             if (mealPlanItem != null)
             {
+                if(mealPlanItem.Amount > 1)
+                {
+                    mealPlanItem.Amount -= 1;
+                }
+                else
+                {
                     appDbContext.MealPlanItems.Remove(mealPlanItem);
+
+                }
             }
 
             appDbContext.SaveChanges();
@@ -107,7 +115,21 @@ namespace MealPlanner.Models
                        appDbContext.MealPlanItems.Where(c => c.MealplanIdentifier == MealPlanId)
                            .Include(s => s.Meal)
                            .Include(s => s.Meal.IngredientDetails)
+                           .ThenInclude(x => x.Ingredient)
                            .ToList();
+            //List <Ingredient> ingredients = appDbContext.Ingredients.ToList();
+            //foreach (var item in MealPlanItems)
+            //{
+            //    foreach (var ingredientdetail in item.Meal.IngredientDetails)
+            //    {
+            //        if(ingredientdetail.Ingredient == null)
+            //        {
+            //            ingredientdetail.Ingredient = ingredients.SingleOrDefault(x => ingredientdetail.ingre);
+            //        }
+
+            //    }
+            //}
+            //appDbContext.SaveChanges();
             return MealPlanItems;
             //foreach (var item in MealPlanItems)
             //{
