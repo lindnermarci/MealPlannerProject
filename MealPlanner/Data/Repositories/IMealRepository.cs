@@ -15,10 +15,7 @@ namespace MealPlanner.Models.Repositories
         Meal GetMealById(int MealId);
         void AddPersonalMeals(MealPlan mealPlan, int calories);
         List<Ingredient> GetMealIngredients(int mealId);
-        void InitialiseMeals();
-
         List<IngredientDetail> GetIngredientDetails(int mealId);
-
         int GetFatContent(int mealId);
         int GetProteinContent(int mealId);
         int GetCarbohidrateContent(int mealId);

@@ -25,7 +25,6 @@ namespace MealPlanner.Controllers
                 MealsOfTheWeek = mealRepository.MealsOfTheWeek
             };
             ViewBag.title = "Marton's Meal Planner";
-            mealRepository.InitialiseMeals();
 
             return View(homeViewModel);
         }

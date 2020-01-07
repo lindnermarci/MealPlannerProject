@@ -37,9 +37,9 @@ namespace MealPlanner
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<MealPlan>(mp => MealPlan.GetPlan(mp));
-            
-            services.AddAutoMapper();
-            
+
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddHttpContextAccessor();
             services.AddSession();
 

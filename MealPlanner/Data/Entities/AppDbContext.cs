@@ -14,7 +14,7 @@ namespace MealPlanner.Data
         {
 
         }
-        public DbSet<User> Users { get; set; }
+        public override DbSet<User> Users { get; set; }
 
         public DbSet<Meal> Meals { get; set; }
 

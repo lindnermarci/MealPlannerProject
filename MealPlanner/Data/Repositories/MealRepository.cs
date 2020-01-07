@@ -30,7 +30,7 @@ namespace MealPlanner.Models.Repositories
         {
             get
             {
-                return appDbContext.Meals.Where(meal => meal.IsMealOfTheWeek).Include(meal => meal.Category);
+                return appDbContext.Meals.Where(meal => meal.IsMealOfTheWeek).Include(meal => meal.Category).Include(x => x.IngredientDetails).ThenInclude(x => x.Ingredient);
             }
         }
 
@@ -75,7 +75,6 @@ namespace MealPlanner.Models.Repositories
             var szum = 0.0;
             foreach (var item in GetIngredientDetails(mealId))
             {
-                if (item.Ingredient != null)
                     szum += item.Ingredient.FatContent;
             }
             return (int)szum;
@@ -89,10 +88,7 @@ namespace MealPlanner.Models.Repositories
 
         public Meal GetMealById(int mealId)
         {
-            var meal = appDbContext.Meals.FirstOrDefault(meal => meal.MealId == mealId);
-            if (meal.IngredientDetails == null) meal.IngredientDetails = GetMealIngredientDetails(mealId);
-            appDbContext.SaveChanges();
-            return meal;
+            return appDbContext.Meals.Include(x => x.IngredientDetails).ThenInclude(x => x.Ingredient).FirstOrDefault(meal => meal.MealId == mealId);
         }
 
         public List<Ingredient> GetMealIngredients(int mealId)
@@ -109,45 +105,13 @@ namespace MealPlanner.Models.Repositories
 
         public List<IngredientDetail> GetMealIngredientDetails(int mealId)
         {
-            List<IngredientDetail> ingredientDetails = appDbContext.IngredientDetails.Where(x => x.MealId == mealId).Cast<IngredientDetail>().ToList();
-            foreach (var ingredientDetail in ingredientDetails)
-            {
-                List<Ingredient> ingredients = appDbContext.Ingredients.Cast<Ingredient>().ToList();
-                if (ingredientDetail.Ingredient == null)
-                {
-                   // Ingredient ing = ingredients.SingleOrDefault(ing => ing.IngredientId == (ingredientDetail.IngredientId % 4 + 1));
-                   // ingredientDetail.Ingredient = ing;
-                }
-            }
-            return ingredientDetails;
+            return appDbContext.IngredientDetails.Where(x => x.MealId == mealId).Include(x => x.Ingredient).Cast<IngredientDetail>().ToList();
 
         }
 
         public int GetProteinContent(int mealId)
         {
             throw new NotImplementedException();
-        }
-
-        public void InitialiseMeals()
-        {
-            IList<Meal> meals = appDbContext.Meals.Cast<Meal>().ToList();
-            foreach (var meal in meals)
-            {
-                if (meal.IngredientDetails == null || meal.IngredientDetails.Count == 0)
-                {
-                    meal.IngredientDetails = appDbContext.IngredientDetails.Where(x => x.MealId == meal.MealId).Cast<IngredientDetail>().ToList();
-                    foreach (var ingredientDetail in meal.IngredientDetails)
-                    {
-                        List<Ingredient> ingredients = appDbContext.Ingredients.Cast<Ingredient>().ToList();
-                        if (ingredientDetail.Ingredient == null)
-                        {
-                            //Ingredient ing = ingredients.SingleOrDefault(ing => ing.IngredientId == (ingredientDetail.IngredientId % 4 + 1));
-                            //ingredientDetail.Ingredient = ing;
-                        }
-                    }
-                }
-                appDbContext.SaveChanges();
-            }
         }
     }
 }

@@ -72,24 +72,12 @@ namespace MealPlanner.Models
 
         }
 
-        internal void RemoveAllFromPlan()
-        {
-            
-            var mealPlanItems = appDbContext.MealPlanItems;
-            foreach (var item in mealPlanItems)
-            {
-                mealPlanItems.Remove(item);
-            }
-            MealPlanItems?.Clear();
-        }
-
-        public int RemoveFromPlan(Meal meal, int dayOfWeek)
+        public void RemoveFromPlan(Meal meal, int dayOfWeek)
         {
             var mealPlanItem =
                     appDbContext.MealPlanItems.SingleOrDefault(
                         item => item.Meal.MealId == meal.MealId && item.MealplanIdentifier == MealPlanId && item.DayOfWeek == (DayOfWeek)dayOfWeek);
 
-            var localAmount = 0;
 
             if (mealPlanItem != null)
             {
@@ -105,46 +93,28 @@ namespace MealPlanner.Models
             }
 
             appDbContext.SaveChanges();
-
-            return localAmount;
         }
 
         public List<MealPlanItem> GetMealPlanItems()
         {
-           MealPlanItems =
-                       appDbContext.MealPlanItems.Where(c => c.MealplanIdentifier == MealPlanId)
+           return appDbContext.MealPlanItems.Where(c => c.MealplanIdentifier == MealPlanId)
                            .Include(s => s.Meal)
                            .Include(s => s.Meal.IngredientDetails)
                            .ThenInclude(x => x.Ingredient)
                            .ToList();
-            //List <Ingredient> ingredients = appDbContext.Ingredients.ToList();
-            //foreach (var item in MealPlanItems)
-            //{
-            //    foreach (var ingredientdetail in item.Meal.IngredientDetails)
-            //    {
-            //        if(ingredientdetail.Ingredient == null)
-            //        {
-            //            ingredientdetail.Ingredient = ingredients.SingleOrDefault(x => ingredientdetail.ingre);
-            //        }
-
-            //    }
-            //}
-            //appDbContext.SaveChanges();
-            return MealPlanItems;
-            //foreach (var item in MealPlanItems)
-            //{
-            //    if(item.Meal.IngredientDetails == null)
-            //    {
-            //        item.Meal.IngredientDetails = 
-            //    }
-            //}
+           
+           
         }
 
         public void ClearMealPlan()
         {
+
             var mealPlanItems = appDbContext
                 .MealPlanItems
-                .Where(x => x.MealplanIdentifier == MealPlanId);
+                .Where(x => x.MealplanIdentifier == MealPlanId)
+                .Include(s => s.Meal)
+                           .Include(s => s.Meal.IngredientDetails)
+                           .ThenInclude(x => x.Ingredient);
 
             appDbContext.MealPlanItems.RemoveRange(mealPlanItems);
 
@@ -192,17 +162,7 @@ namespace MealPlanner.Models
         {
             get
             {
-                int szum = 0;
-                var mealPlanItems = GetMealPlanItems();
-                if (mealPlanItems != null)
-                {
-                    foreach (var item in mealPlanItems)
-                    {
-                        szum += item.Meal.Calories;
-                    }
-                    return szum;
-                }
-                return 0;
+                return GetMealPlanItems().Sum(x => x.Meal.Calories);
             }
         }
     }
