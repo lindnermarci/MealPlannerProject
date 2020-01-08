@@ -33,7 +33,7 @@ namespace MealPlanner.Modles.Repositories
         {
             var totalCalories = calculateCalorieGoal(id);
             var user = appDbContext.Users.Where(p => p.Id.Equals(id)).FirstOrDefault();
-            double proteinCalories = user.Weight * 2 * 4;
+            double proteinCalories = (user.ActivityFactor < 1.375) ? user.Weight * 1.75 * 4 : user.Weight * 2 * 4;
             double fatCalories = 0;
             switch (user.NutritionType)
             {

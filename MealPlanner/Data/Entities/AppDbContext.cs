@@ -35,35 +35,6 @@ namespace MealPlanner.Data
             modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 2, CategoryName = "MainDishes" });
             modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 3, CategoryName = "Deserts" });
 
-            ////seed Meals
-            //Ingredient cal = new Ingredient(1, "califlower", 1.9, 5, 0.3, 24);
-            //Ingredient nuts = new Ingredient(2, "nuts", 13, 18, 5, 440);
-            //Ingredient soysauce = new Ingredient(3, "califlower", 4.8, 8, 0, 50);
-            //Ingredient eggwhite = new Ingredient(4, "eggwhite", 11, 0, 0, 51);
-
-            //modelBuilder.Entity<Ingredient>().HasData(cal);
-            //modelBuilder.Entity<Ingredient>().HasData(nuts);
-            //modelBuilder.Entity<Ingredient>().HasData(soysauce);
-            //modelBuilder.Entity<Ingredient>().HasData(eggwhite);
-
-            //var i1 = new IngredientDetail { Id = 1, Amount = 261, MealId = 12 };
-            //var i2 = new IngredientDetail { Id = 2, Amount = 62, MealId = 12 };
-            //var i3 = new IngredientDetail { Id = 3, Amount = 23.7, MealId = 12 };
-            //var i4 = new IngredientDetail { Id = 4, Amount = 9, MealId = 12 };
-
-            //modelBuilder.Entity<IngredientDetail>().HasData(i1);
-            //modelBuilder.Entity<IngredientDetail>().HasData(i2);
-            //modelBuilder.Entity<IngredientDetail>().HasData(i3);
-            //modelBuilder.Entity<IngredientDetail>().HasData(i4);
-
-            //Ingredient cal = new Ingredient(5, "califlower", 1.9, 5, 0.3, 24);
-            //Ingredient cal = new Ingredient(6, "califlower", 1.9, 5, 0.3, 24);
-            //Ingredient cal = new Ingredient(7, "califlower", 1.9, 5, 0.3, 24);
-            //Ingredient cal = new Ingredient(8, "califlower", 1.9, 5, 0.3, 24);
-            //Ingredient cal = new Ingredient(9, "califlower", 1.9, 5, 0.3, 24);
-            //Ingredient cal = new Ingredient(10, "califlower", 1.9, 5, 0.3, 24);
-
-            //List<IngredientDetail> details = new List<IngredientDetail> { i1, i2, i3, i4 };
 
             modelBuilder.Entity<Meal>().HasData(new Meal
             {
@@ -301,14 +272,16 @@ namespace MealPlanner.Data
                Amount = 146.0,
                MealId = 12,
                IngredientId = 1
-           }, new
+           },
+            new
            {
                IngredientDetailId = 5,
                Amount = 189.0,
                MealId = 11,
                IngredientId = 4
 
-           });
+           }
+           );
         }
 
     }
