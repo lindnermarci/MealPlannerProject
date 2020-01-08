@@ -214,7 +214,7 @@ namespace MealPlanner.Data
                    Name = "califlower",
                    ProteinContent = 4.0,
                    CarbohidrateContent = 0.3,
-                   FatContent = 1.0,
+                   FatContent = 5.6,
                });
 
             modelBuilder.Entity<Ingredient>()
@@ -223,7 +223,7 @@ namespace MealPlanner.Data
                    IngredientId = 2,
                    Name = "nuts",
                    ProteinContent = 5.0,
-                   CarbohidrateContent = 0.3,
+                   CarbohidrateContent = 4.2,
                    FatContent = 4.0,
                });
 
@@ -233,7 +233,7 @@ namespace MealPlanner.Data
                    IngredientId = 3,
                    Name = "soy sauce",
                    ProteinContent = 5.0,
-                   CarbohidrateContent = 1.3,
+                   CarbohidrateContent = 3.2,
                    FatContent = 1.0,
                });
 
@@ -243,7 +243,7 @@ namespace MealPlanner.Data
                    IngredientId = 4,
                    Name = "egg white",
                    ProteinContent = 5.0,
-                   CarbohidrateContent = 0.3,
+                   CarbohidrateContent = 2.4,
                    FatContent = 1.0,
                });
 
@@ -252,36 +252,379 @@ namespace MealPlanner.Data
            {
                IngredientDetailId = 1,
                Amount = 122.0,
+               IngredientId = 2,
                MealId = 12,
-               IngredientId = 2
            }, new
            {
                IngredientDetailId = 2,
                Amount = 210.0,
+               IngredientId = 3,
                MealId = 12,
-               IngredientId = 3
            }, new
            {
                IngredientDetailId = 3,
                Amount = 261.0,
+               IngredientId = 4,
                MealId = 12,
-               IngredientId = 4
            }, new
            {
                IngredientDetailId = 4,
                Amount = 146.0,
+               IngredientId = 1,
                MealId = 12,
-               IngredientId = 1
            },
-            new
+           new
            {
                IngredientDetailId = 5,
                Amount = 189.0,
+               IngredientId = 4,
                MealId = 11,
-               IngredientId = 4
 
-           }
-           );
+           },
+          new
+          {
+              IngredientDetailId = 6,
+              Amount = 261.0,
+              IngredientId = 2,
+              MealId = 11,
+
+          },
+          new
+          {
+              IngredientDetailId = 7,
+              Amount = 213.3,
+              IngredientId = 3,
+              MealId = 11,
+
+          },
+          new
+          {
+              IngredientDetailId = 8,
+              Amount = 122.2,
+              IngredientId = 1,
+              MealId = 11,
+
+          },
+          new
+          {
+              IngredientDetailId = 9,
+              Amount = 321.1,
+              IngredientId = 2,
+              MealId = 10,
+
+          },
+          new
+          {
+              IngredientDetailId = 10,
+              Amount = 012.1,
+              IngredientId = 3,
+              MealId = 10,
+
+          },
+          new
+          {
+              IngredientDetailId = 11,
+              Amount = 212.0,
+              IngredientId = 4,
+              MealId = 10,
+
+          },
+          new
+          {
+              IngredientDetailId = 12,
+              Amount = 101.0,
+              IngredientId = 1,
+              MealId = 10,
+
+          },
+          new
+          {
+              IngredientDetailId = 13,
+              Amount = 321.0,
+              IngredientId = 2,
+              MealId = 9,
+
+          },
+          new
+          {
+              IngredientDetailId = 14,
+              Amount = 211.0,
+              IngredientId = 3,
+              MealId = 9,
+
+          },
+          new
+          {
+              IngredientDetailId = 15,
+              Amount = 141.0,
+              IngredientId = 4,
+              MealId = 9
+
+          },
+          new
+          {
+              IngredientDetailId = 16,
+              Amount = 211.0,
+              IngredientId = 1,
+              MealId = 9,
+
+          },
+          new
+          {
+              IngredientDetailId = 17,
+              Amount = 121.0,
+              IngredientId = 2,
+              MealId = 8,
+
+          },
+          new
+          {
+              IngredientDetailId = 18,
+              Amount = 261.0,
+              IngredientId = 3,
+              MealId = 8,
+
+          },
+          new
+          {
+              IngredientDetailId = 19,
+              Amount = 261.0,
+              IngredientId = 4,
+              MealId = 8,
+
+          },
+          new
+          {
+              IngredientDetailId = 20,
+              Amount = 261.0,
+              IngredientId = 1,
+              MealId = 8,
+
+          },
+          new
+          {
+              IngredientDetailId = 21,
+              Amount = 261.0,
+              IngredientId = 2,
+              MealId = 7,
+
+          },
+          new
+          {
+              IngredientDetailId = 22,
+              Amount = 261.0,
+              IngredientId = 3,
+              MealId = 7,
+
+          },
+          new
+          {
+              IngredientDetailId = 23,
+              Amount = 261.0,
+              IngredientId = 4,
+              MealId = 7,
+
+          },
+          new
+          {
+              IngredientDetailId = 24,
+              Amount = 261.0,
+              IngredientId = 1,
+              MealId = 7,
+
+          },
+          new
+          {
+              IngredientDetailId = 25,
+              Amount = 261.0,
+              IngredientId = 2,
+              MealId = 6,
+
+          },
+          new
+          {
+              IngredientDetailId = 26,
+              Amount = 261.0,
+              IngredientId = 3,
+              MealId = 6,
+
+          },
+          new
+          {
+              IngredientDetailId = 27,
+              Amount = 261.0,
+              IngredientId = 4,
+              MealId = 6,
+
+          },
+          new
+          {
+              IngredientDetailId = 28,
+              Amount = 261.0,
+              IngredientId = 1,
+              MealId = 6,
+
+          },
+          new
+          {
+              IngredientDetailId = 29,
+              Amount = 261.0,
+              IngredientId = 2,
+              MealId = 5,
+
+          },
+          new
+          {
+              IngredientDetailId = 30,
+              Amount = 261.0,
+              IngredientId = 3,
+              MealId = 5,
+
+          },
+          new
+          {
+              IngredientDetailId = 31,
+              Amount = 261.0,
+              IngredientId = 4,
+              MealId = 5,
+
+          },
+          new
+          {
+              IngredientDetailId = 32,
+              Amount = 321.0,
+              IngredientId = 1,
+              MealId = 5,
+
+          },
+          new
+          {
+              IngredientDetailId = 33,
+              Amount = 261.0,
+              IngredientId = 2,
+              MealId = 4,
+
+          },
+          new
+          {
+              IngredientDetailId = 34,
+              Amount = 261.0,
+              IngredientId = 3,
+              MealId = 4,
+
+          },
+          new
+          {
+              IngredientDetailId = 35,
+              Amount = 261.0,
+              IngredientId = 4,
+              MealId = 4,
+
+          },
+          new
+          {
+              IngredientDetailId = 36,
+              Amount = 261.0,
+              IngredientId = 1,
+              MealId = 4,
+
+          },
+          new
+          {
+              IngredientDetailId = 37,
+              Amount = 261.0,
+              IngredientId = 2,
+              MealId = 3,
+
+          },
+          new
+          {
+              IngredientDetailId = 38,
+              Amount = 261.0,
+              IngredientId = 3,
+              MealId = 3,
+
+          },
+          new
+          {
+              IngredientDetailId = 39,
+              Amount = 311.0,
+              IngredientId = 4,
+              MealId = 3,
+
+          },
+          new
+          {
+              IngredientDetailId = 40,
+              Amount = 221.0,
+              IngredientId = 1,
+              MealId = 3,
+
+          },
+          new
+          {
+              IngredientDetailId = 41,
+              Amount = 269.0,
+              IngredientId = 2,
+              MealId = 2,
+
+          },
+          new
+          {
+              IngredientDetailId = 42,
+              Amount = 271.0,
+              IngredientId = 3,
+              MealId = 2,
+
+          },
+          new
+          {
+              IngredientDetailId = 43,
+              Amount = 291.0,
+              IngredientId = 4,
+              MealId = 2,
+
+          },
+          new
+          {
+              IngredientDetailId = 44,
+              Amount = 159.0,
+              IngredientId = 1,
+              MealId = 2,
+
+          },
+          new
+          {
+              IngredientDetailId = 45,
+              Amount = 211.0,
+              IngredientId = 2,
+              MealId = 1,
+
+          },
+          new
+          {
+              IngredientDetailId = 46,
+              Amount = 261.0,
+              IngredientId = 3,
+              MealId = 1,
+
+          },
+          new
+          {
+              IngredientDetailId = 47,
+              Amount = 271.0,
+              IngredientId = 4,
+              MealId = 1,
+
+          },
+          new
+          {
+              IngredientDetailId = 48,
+              Amount = 261.0,
+              IngredientId = 2,
+              MealId = 1,
+
+          });
         }
 
     }

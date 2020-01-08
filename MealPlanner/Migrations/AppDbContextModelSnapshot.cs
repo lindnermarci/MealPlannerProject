@@ -78,6 +78,307 @@ namespace MealPlanner.Migrations
                             Amount = 189.0,
                             IngredientId = 4,
                             MealId = 11
+                        },
+                        new
+                        {
+                            IngredientDetailId = 6,
+                            Amount = 261.0,
+                            IngredientId = 2,
+                            MealId = 11
+                        },
+                        new
+                        {
+                            IngredientDetailId = 7,
+                            Amount = 213.30000000000001,
+                            IngredientId = 3,
+                            MealId = 11
+                        },
+                        new
+                        {
+                            IngredientDetailId = 8,
+                            Amount = 122.2,
+                            IngredientId = 1,
+                            MealId = 11
+                        },
+                        new
+                        {
+                            IngredientDetailId = 9,
+                            Amount = 321.10000000000002,
+                            IngredientId = 2,
+                            MealId = 10
+                        },
+                        new
+                        {
+                            IngredientDetailId = 10,
+                            Amount = 12.1,
+                            IngredientId = 3,
+                            MealId = 10
+                        },
+                        new
+                        {
+                            IngredientDetailId = 11,
+                            Amount = 212.0,
+                            IngredientId = 4,
+                            MealId = 10
+                        },
+                        new
+                        {
+                            IngredientDetailId = 12,
+                            Amount = 101.0,
+                            IngredientId = 1,
+                            MealId = 10
+                        },
+                        new
+                        {
+                            IngredientDetailId = 13,
+                            Amount = 321.0,
+                            IngredientId = 2,
+                            MealId = 9
+                        },
+                        new
+                        {
+                            IngredientDetailId = 14,
+                            Amount = 211.0,
+                            IngredientId = 3,
+                            MealId = 9
+                        },
+                        new
+                        {
+                            IngredientDetailId = 15,
+                            Amount = 141.0,
+                            IngredientId = 4,
+                            MealId = 9
+                        },
+                        new
+                        {
+                            IngredientDetailId = 16,
+                            Amount = 211.0,
+                            IngredientId = 1,
+                            MealId = 9
+                        },
+                        new
+                        {
+                            IngredientDetailId = 17,
+                            Amount = 121.0,
+                            IngredientId = 2,
+                            MealId = 8
+                        },
+                        new
+                        {
+                            IngredientDetailId = 18,
+                            Amount = 261.0,
+                            IngredientId = 3,
+                            MealId = 8
+                        },
+                        new
+                        {
+                            IngredientDetailId = 19,
+                            Amount = 261.0,
+                            IngredientId = 4,
+                            MealId = 8
+                        },
+                        new
+                        {
+                            IngredientDetailId = 20,
+                            Amount = 261.0,
+                            IngredientId = 1,
+                            MealId = 8
+                        },
+                        new
+                        {
+                            IngredientDetailId = 21,
+                            Amount = 261.0,
+                            IngredientId = 2,
+                            MealId = 7
+                        },
+                        new
+                        {
+                            IngredientDetailId = 22,
+                            Amount = 261.0,
+                            IngredientId = 3,
+                            MealId = 7
+                        },
+                        new
+                        {
+                            IngredientDetailId = 23,
+                            Amount = 261.0,
+                            IngredientId = 4,
+                            MealId = 7
+                        },
+                        new
+                        {
+                            IngredientDetailId = 24,
+                            Amount = 261.0,
+                            IngredientId = 1,
+                            MealId = 7
+                        },
+                        new
+                        {
+                            IngredientDetailId = 25,
+                            Amount = 261.0,
+                            IngredientId = 2,
+                            MealId = 6
+                        },
+                        new
+                        {
+                            IngredientDetailId = 26,
+                            Amount = 261.0,
+                            IngredientId = 3,
+                            MealId = 6
+                        },
+                        new
+                        {
+                            IngredientDetailId = 27,
+                            Amount = 261.0,
+                            IngredientId = 4,
+                            MealId = 6
+                        },
+                        new
+                        {
+                            IngredientDetailId = 28,
+                            Amount = 261.0,
+                            IngredientId = 1,
+                            MealId = 6
+                        },
+                        new
+                        {
+                            IngredientDetailId = 29,
+                            Amount = 261.0,
+                            IngredientId = 2,
+                            MealId = 5
+                        },
+                        new
+                        {
+                            IngredientDetailId = 30,
+                            Amount = 261.0,
+                            IngredientId = 3,
+                            MealId = 5
+                        },
+                        new
+                        {
+                            IngredientDetailId = 31,
+                            Amount = 261.0,
+                            IngredientId = 4,
+                            MealId = 5
+                        },
+                        new
+                        {
+                            IngredientDetailId = 32,
+                            Amount = 321.0,
+                            IngredientId = 1,
+                            MealId = 5
+                        },
+                        new
+                        {
+                            IngredientDetailId = 33,
+                            Amount = 261.0,
+                            IngredientId = 2,
+                            MealId = 4
+                        },
+                        new
+                        {
+                            IngredientDetailId = 34,
+                            Amount = 261.0,
+                            IngredientId = 3,
+                            MealId = 4
+                        },
+                        new
+                        {
+                            IngredientDetailId = 35,
+                            Amount = 261.0,
+                            IngredientId = 4,
+                            MealId = 4
+                        },
+                        new
+                        {
+                            IngredientDetailId = 36,
+                            Amount = 261.0,
+                            IngredientId = 1,
+                            MealId = 4
+                        },
+                        new
+                        {
+                            IngredientDetailId = 37,
+                            Amount = 261.0,
+                            IngredientId = 2,
+                            MealId = 3
+                        },
+                        new
+                        {
+                            IngredientDetailId = 38,
+                            Amount = 261.0,
+                            IngredientId = 3,
+                            MealId = 3
+                        },
+                        new
+                        {
+                            IngredientDetailId = 39,
+                            Amount = 311.0,
+                            IngredientId = 4,
+                            MealId = 3
+                        },
+                        new
+                        {
+                            IngredientDetailId = 40,
+                            Amount = 221.0,
+                            IngredientId = 1,
+                            MealId = 3
+                        },
+                        new
+                        {
+                            IngredientDetailId = 41,
+                            Amount = 269.0,
+                            IngredientId = 2,
+                            MealId = 2
+                        },
+                        new
+                        {
+                            IngredientDetailId = 42,
+                            Amount = 271.0,
+                            IngredientId = 3,
+                            MealId = 2
+                        },
+                        new
+                        {
+                            IngredientDetailId = 43,
+                            Amount = 291.0,
+                            IngredientId = 4,
+                            MealId = 2
+                        },
+                        new
+                        {
+                            IngredientDetailId = 44,
+                            Amount = 159.0,
+                            IngredientId = 1,
+                            MealId = 2
+                        },
+                        new
+                        {
+                            IngredientDetailId = 45,
+                            Amount = 211.0,
+                            IngredientId = 2,
+                            MealId = 1
+                        },
+                        new
+                        {
+                            IngredientDetailId = 46,
+                            Amount = 261.0,
+                            IngredientId = 3,
+                            MealId = 1
+                        },
+                        new
+                        {
+                            IngredientDetailId = 47,
+                            Amount = 271.0,
+                            IngredientId = 4,
+                            MealId = 1
+                        },
+                        new
+                        {
+                            IngredientDetailId = 48,
+                            Amount = 261.0,
+                            IngredientId = 2,
+                            MealId = 1
                         });
                 });
 
@@ -175,14 +476,14 @@ namespace MealPlanner.Migrations
                         {
                             IngredientId = 1,
                             CarbohidrateContent = 0.29999999999999999,
-                            FatContent = 1.0,
+                            FatContent = 5.5999999999999996,
                             Name = "califlower",
                             ProteinContent = 4.0
                         },
                         new
                         {
                             IngredientId = 2,
-                            CarbohidrateContent = 0.29999999999999999,
+                            CarbohidrateContent = 4.2000000000000002,
                             FatContent = 4.0,
                             Name = "nuts",
                             ProteinContent = 5.0
@@ -190,7 +491,7 @@ namespace MealPlanner.Migrations
                         new
                         {
                             IngredientId = 3,
-                            CarbohidrateContent = 1.3,
+                            CarbohidrateContent = 3.2000000000000002,
                             FatContent = 1.0,
                             Name = "soy sauce",
                             ProteinContent = 5.0
@@ -198,7 +499,7 @@ namespace MealPlanner.Migrations
                         new
                         {
                             IngredientId = 4,
-                            CarbohidrateContent = 0.29999999999999999,
+                            CarbohidrateContent = 2.3999999999999999,
                             FatContent = 1.0,
                             Name = "egg white",
                             ProteinContent = 5.0
@@ -211,9 +512,6 @@ namespace MealPlanner.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Calories")
-                        .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -252,7 +550,6 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 1,
-                            Calories = 0,
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/applepiesmall.jpg",
                             ImageUrl = "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2019/04/sausage-casserole.jpg?itok=kWEQd0OP",
@@ -266,7 +563,6 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 2,
-                            Calories = 0,
                             CategoryId = 3,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/blueberrycheesecakesmall.jpg",
                             ImageUrl = "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/06/gfkids_onepanvegeggs.jpg?itok=XbNYQTmJ",
@@ -280,7 +576,6 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 3,
-                            Calories = 0,
                             CategoryId = 3,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cheesecakesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cheesecake.jpg",
@@ -294,7 +589,6 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 4,
-                            Calories = 0,
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cherrypiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cherrypie.jpg",
@@ -308,7 +602,6 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 5,
-                            Calories = 0,
                             CategoryId = 2,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/christmasapplepiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/christmasapplepie.jpg",
@@ -322,7 +615,6 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 6,
-                            Calories = 0,
                             CategoryId = 2,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/peachpiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/peachpie.jpg",
@@ -336,7 +628,6 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 7,
-                            Calories = 0,
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/pumpkinpiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/pumpkinpie.jpg",
@@ -350,7 +641,6 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 8,
-                            Calories = 0,
                             CategoryId = 2,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypie.jpg",
@@ -364,7 +654,6 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 9,
-                            Calories = 0,
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/rhubarbpiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/rhubarbpie.jpg",
@@ -378,7 +667,6 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 10,
-                            Calories = 0,
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypie.jpg",
@@ -392,7 +680,6 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 11,
-                            Calories = 0,
                             CategoryId = 3,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrycheesecakesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrycheesecake.jpg",
@@ -406,7 +693,6 @@ namespace MealPlanner.Migrations
                         new
                         {
                             MealId = 12,
-                            Calories = 220,
                             CategoryId = 2,
                             ImageThumbnailUrl = "~/images/cal.jpg",
                             ImageUrl = "~/images/cal.jpg",

@@ -46,11 +46,11 @@ namespace MealPlanner.Models.Repositories
                     IList<Meal> meals = appDbContext.Meals.Include(x => x.IngredientDetails).ThenInclude(x => x.Ingredient).Cast<Meal>().Where(x => x.MealId > i).ToList();
                     foreach (var item in meals)
                     {
-                        if (szum + 200 < calories)
+                        if (szum < calories * 0.9)
                         {
                             mealPlan.AddToPlan(item, i, 1);
                             szum += item.Calories;
-                        }
+                        } 
                     }
                     szum = 0;
                 }
